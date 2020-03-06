@@ -80,15 +80,15 @@
     src: files/countdown.sh
     dest: /proaluno/countdown.sh
     mode: '0755'
-
-- name: create /etc/share/mate/autostart folder
-  file:
-    path: /etc/share/mate/autostart
-    state: directory
-    mode: '0755'
-
-- name: Copy countdown.desktop
+    
+- name: Copy check_quotas.sh
   copy:
-    src: files/countdown.desktop
-    dest: /etc/share/mate/autostart/countdown.desktop
+    src: files/check_quotas.sh
+    dest: /proaluno/check_quotas.sh
+    mode: '0755'
+    
+- name: Copy quotas.desktop
+  copy:
+    src: files/quotas.desktop
+    dest: '/etc/skel/Área de trabalho/quotas.desktop'
     mode: '0755'
