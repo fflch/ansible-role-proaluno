@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/proaluno/mate.sh
+Exec=/proaluno/login.sh
 Hidden=false
 X-MATE-Autostart-enabled=true
 Name[pt_BR]=mateusp

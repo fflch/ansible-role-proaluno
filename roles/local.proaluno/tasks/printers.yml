@@ -22,12 +22,6 @@
     dest: /usr/lib/cups/filter/gstopdf17
     mode: '0755'
 
-- name: Copy usp.types
-  copy:
-    src: files/usp.types
-    dest: /etc/cups/usp.types
-    mode: '0644'
-
 - name: Copy lpoptions
   copy:
     src: files/lpoptions
@@ -40,12 +34,8 @@
     dest: "/usr/share/cups/model/{{item}}"
     mode: '0755'
   loop:
-    - K7600_direto_simplex.ppd
-    - K7600_direto_duplex.ppd
-    - K7600_direto_duplex_borda_menor.ppd
-    - K7600_processado_simplex.ppd
-    - K7600_processado_duplex.ppd
-    - K7600_processado_duplex_borda_menor.ppd
+    - K7600_direto.ppd
+    - K7600_processado.ppd
 
 #### remover impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
@@ -113,6 +103,19 @@
     name: "avahi-daemon"
     state: absent
     purge: yes
+
+- name: Copy cupsd.conf
+  template:
+    src: templates/cupsd.conf
+    dest: '/etc/cups/cupsd.conf'
+    mode: '0644'
+
+############# tea4cups
+- name: create /proaluno folder
+  file:
+    path: /proaluno
+    state: directory
+    mode: '0755'
 
 - name: Copy dialog_tea4cups.sh
   template:

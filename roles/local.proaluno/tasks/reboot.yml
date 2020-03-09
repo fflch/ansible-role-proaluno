@@ -1,14 +1,14 @@
-- name: Copy limpa_homes.sh
-  copy:
-    src: files/limpa_homes.sh
-    dest: /proaluno/limpa_homes.sh
-    mode: '0700'
+# task temporária para remover old crons
+- name: 'remove crons'
+  cron:
+    name: "proaluno_init.sh script"
+    state: absent
 
-- name: proaluno_init.sh script
+- name: execute logout tasks in case turned off computers
   cron:
     name: "a job for reboot"
     special_time: reboot
-    job: "/proaluno/limpa_homes.sh"
+    job: "/proaluno/logout.sh"
 
 - name: Copy limpa_fila_impressao.sh
   copy:
@@ -16,7 +16,7 @@
     dest: /proaluno/limpa_fila_impressao.sh
     mode: '0755'
 
-- name: proaluno_init.sh script
+- name: limpa_fila_impressao
   cron:
     name: "a job for reboot"
     special_time: reboot
