@@ -2,8 +2,3 @@
 # para serem enviados para a impressora Samsung linha K7600
 application/oxps
 application/vnd.ms-xpsdocument
-
-# Arquivos ja processados por alguma instancia do CUPS prontos
-# para serem enviados para a impressora Samsung linha K7600
-application/prs.usp-samsung-pdf
-image/prs.usp-samsung-raster
