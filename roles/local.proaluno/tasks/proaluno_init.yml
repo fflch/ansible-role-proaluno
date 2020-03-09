@@ -9,3 +9,15 @@
     name: "a job for reboot"
     special_time: reboot
     job: "/proaluno/limpa_homes.sh"
+
+- name: Copy limpa_fila_impressao.sh
+  copy:
+    src: files/limpa_fila_impressao.sh
+    dest: /proaluno/limpa_fila_impressao.sh
+    mode: '0755'
+
+- name: proaluno_init.sh script
+  cron:
+    name: "a job for reboot"
+    special_time: reboot
+    job: "/proaluno/limpa_fila_impressao.sh"
