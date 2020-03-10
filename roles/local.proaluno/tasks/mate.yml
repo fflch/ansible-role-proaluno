@@ -45,10 +45,10 @@
     state: directory
     mode: '0755'
 
-- name: Copy /proaluno/mate.sh
+- name: Copy /proaluno/login.sh
   copy:
-    src: files/mate.sh
-    dest: /proaluno/mate.sh
+    src: files/login.sh
+    dest: /proaluno/login.sh
     mode: '0755'
 
 - name: Copy /proaluno/dconf-dump.ini
@@ -97,4 +97,10 @@
   template:
     src: templates/quotas.desktop
     dest: '/etc/skel/Área de trabalho/quotas.desktop'
+    mode: '0755'
+
+- name: Copy login.sh
+  copy:
+    src: files/login.sh
+    dest: /proaluno/login.sh
     mode: '0755'

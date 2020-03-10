@@ -1,0 +1,23 @@
+# task temporária para remover old crons
+- name: 'remove crons'
+  cron:
+    name: "proaluno_init.sh script"
+    state: absent
+
+- name: execute logout tasks in case turned off computers
+  cron:
+    name: "a job for reboot"
+    special_time: reboot
+    job: "/proaluno/logout.sh"
+
+- name: Copy limpa_fila_impressao.sh
+  copy:
+    src: files/limpa_fila_impressao.sh
+    dest: /proaluno/limpa_fila_impressao.sh
+    mode: '0755'
+
+- name: limpa_fila_impressao
+  cron:
+    name: "a job for reboot"
+    special_time: reboot
+    job: "/proaluno/limpa_fila_impressao.sh"

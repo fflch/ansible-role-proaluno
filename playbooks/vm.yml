@@ -9,21 +9,37 @@
     cups_server: "ipp://192.168.8.43:631/printers"
     cups_printers:
 
-      - name: frente_e_verso_borda_maior
-        device: "{{cups_server}}/proaluno_letras_duplex"
-        model: 'K7600_processado_duplex.ppd'
+      - name: impressora
+        device: "{{cups_server}}/financeiro_ppd"
+        model: 'K7600_processado.ppd'
 
-      - name: frente_e_verso_borda_menor
-        device: "{{cups_server}}/proaluno_letras_duplex_borda_menor"
-        model: 'K7600_processado_duplex_borda_menor.ppd'
+      - name: impressora_financeiro
+        device: "{{cups_server}}/financeiro_ppd"
+        model: 'K7600_processado.ppd'
 
-      - name: somente_frente
-        device: "{{cups_server}}/proaluno_letras_simplex"
-        model: 'K7600_processado_simplex.ppd'
+      - name: impressora_letras
+        device: "{{cups_server}}/proaluno_letras_ppd"
+        model: 'K7600_processado.ppd'
 
-      - name: openprint
-        device: "{{cups_server}}/let_samsung_pb_k7500lx_proaluno"
+      - name: impressora_fcs
+        device: "{{cups_server}}/proaluno_fcs_ppd"
+        model: 'K7600_processado.ppd'
+
+      - name: impressora_gh
+        device: "{{cups_server}}/proaluno_gh_ppd"
+        model: 'K7600_processado.ppd'
+
+      - name: impressora_gh
+        device: "{{cups_server}}/proaluno_gh_ppd"
+        model: 'K7600_processado.ppd'
+
+      - name: financeiro_openprinting
+        device: "{{cups_server}}/adm_samsung_pb_k7500lx_fin"
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+      - name: pdfprinter
+        device: "{{cups_server}}/pdfprinter"
+        model: 'raw'
 
   tasks:
 

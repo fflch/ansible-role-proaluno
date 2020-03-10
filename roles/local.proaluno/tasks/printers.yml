@@ -22,12 +22,6 @@
     dest: /usr/lib/cups/filter/gstopdf17
     mode: '0755'
 
-- name: Copy usp.types
-  copy:
-    src: files/usp.types
-    dest: /etc/cups/usp.types
-    mode: '0644'
-
 - name: Copy lpoptions
   copy:
     src: files/lpoptions
@@ -40,12 +34,8 @@
     dest: "/usr/share/cups/model/{{item}}"
     mode: '0755'
   loop:
-    - K7600_direto_simplex.ppd
-    - K7600_direto_duplex.ppd
-    - K7600_direto_duplex_borda_menor.ppd
-    - K7600_processado_simplex.ppd
-    - K7600_processado_duplex.ppd
-    - K7600_processado_duplex_borda_menor.ppd
+    - K7600_direto.ppd
+    - K7600_processado.ppd
 
 #### remover impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
@@ -86,7 +76,7 @@
 - name: Install printers
   shell: >
     /usr/sbin/lpadmin -p {{ item.name }}
-    -v {{ item.device }}
+    -v tea4cups:{{ item.device }}
     -m {{ item.model }}
     -o printer-error-policy=abort-job
     -o printer-is-shared=false
@@ -114,10 +104,29 @@
     state: absent
     purge: yes
 
+- name: Copy cupsd.conf
+  template:
+    src: templates/cupsd.conf
+    dest: '/etc/cups/cupsd.conf'
+    mode: '0644'
+
+############# tea4cups
+- name: create /proaluno folder
+  file:
+    path: /proaluno
+    state: directory
+    mode: '0755'
+
 - name: Copy dialog_tea4cups.sh
   template:
     src: templates/dialog_tea4cups.sh
     dest: '/proaluno/dialog_tea4cups.sh'
+    mode: '0755'
+
+- name: Copy dialog_tea4cups.sh
+  template:
+    src: templates/dialog_tea4cups_post.sh
+    dest: '/proaluno/dialog_tea4cups_post.sh'
     mode: '0755'
 
 - name: pre hook cups to open dialog
@@ -127,3 +136,11 @@
     state: present
     create: yes
     line: 'prehook_open_check_quotas : /proaluno/dialog_tea4cups.sh'
+
+- name: post hook cups to open dialog
+  lineinfile:
+    path: '/etc/cups/tea4cups.conf'
+    regexp: '^posthook_dialog'
+    state: present
+    create: yes
+    line: 'posthook_dialog : /proaluno/dialog_tea4cups_post.sh'

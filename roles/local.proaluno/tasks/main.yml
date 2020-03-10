@@ -23,12 +23,13 @@
 - import_tasks: mate.yml
   when: proaluno_install_mate
 
-- import_tasks: proaluno_init.yml
+- import_tasks: reboot.yml
 - import_tasks: conky.yml
 - import_tasks: lightdm.yml
 - import_tasks: restrict_shutdown.yml
 - import_tasks: remove_screensaver.yml
 - import_tasks: make_ssh_folder.yml
+- import_tasks: firefox.yml
 
 - import_tasks: update_keys.yml
   when: proaluno_update_keys
