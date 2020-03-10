@@ -83,6 +83,7 @@
     -o PageSize=A4
     -o sides=two-sided-long-edge
     -o fit-to-page
+    -o Duplex=DuplexNoTumble
     -o Media=A4
     - -E
 # lpadmin -E option forces encryption when connecting to the server
