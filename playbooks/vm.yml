@@ -29,9 +29,17 @@
         device: "{{cups_server}}/proaluno_gh_ppd"
         model: 'K7600_processado.ppd'
 
+      - name: impressora_gh
+        device: "{{cups_server}}/proaluno_gh_ppd"
+        model: 'K7600_processado.ppd'
+
       - name: financeiro_openprinting
         device: "{{cups_server}}/adm_samsung_pb_k7500lx_fin"
         model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+      - name: pdfprinter
+        device: "{{cups_server}}/pdfprinter"
+        model: 'raw'
 
   tasks:
 

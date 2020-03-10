@@ -7,6 +7,6 @@ zenity --warning --no-wrap --text \
 </span>
 
 <span>
-    Você está na pró-aluno Faculdade de Filosofia, Letras e Ciências Humanas!
+    Você está na pró-aluno da Faculdade de Filosofia, Letras e Ciências Humanas!
 </span>
 '
