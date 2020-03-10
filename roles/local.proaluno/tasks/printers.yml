@@ -81,6 +81,7 @@
     -o printer-error-policy=abort-job
     -o printer-is-shared=false
     -o PageSize=A4
+    -o sides=two-sided-long-edge
     -o Media=A4
     - -E
 # lpadmin -E option forces encryption when connecting to the server
