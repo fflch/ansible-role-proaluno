@@ -5,3 +5,5 @@
 /proaluno/welcome.sh &
 
 conky -d -p 5
+
+

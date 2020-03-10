@@ -1,0 +1,18 @@
+- name: create /etc/firefox-esr/
+  file:
+    path: /etc/firefox-esr/
+    state: directory
+    mode: '0755'
+
+- name: create /etc/firefox-esr/disable_pdfjs.js
+  file:
+    path: /etc/firefox-esr/disable_pdfjs.js
+    mode: '0644'
+    state: touch
+
+- name: disable pdfjs in firefox
+  lineinfile:
+    path: '/etc/firefox-esr/disable_pdfjs.js'
+    state: present
+    create: yes
+    line: 'lockPref("pdfjs.disabled", true);'
