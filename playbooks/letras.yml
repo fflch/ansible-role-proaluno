@@ -6,20 +6,12 @@
   vars:
     realm: "smbdomain.fflch.usp.br"
     cups_server: "ipp://cups.fflch.usp.br:631/printers"
-    sala: "proaluno_letras_"
     cups_printers:
 
-      - name: frente_e_verso_borda_maior
-        device: "{{cups_server}}/{{sala}}duplex"
-        model: 'K7600_processado_duplex.ppd'
+      - name: impressora
+        device: "{{cups_server}}/proaluno_letras_ppd"
+        model: 'K7600_processado.ppd'
 
-      - name: frente_e_verso_borda_menor
-        device: "{{cups_server}}/{{sala}}duplex_borda_menor"
-        model: 'K7600_processado_duplex_borda_menor.ppd'
-
-      - name: somente_frente
-        device: "{{cups_server}}/{{sala}}simplex"
-        model: 'K7600_processado_simplex.ppd'
   tasks:
 
     - name: proaluno role
@@ -31,7 +23,7 @@
         proaluno_install_pacotes_debian: True
         proaluno_install_mate: True
         proaluno_remove_all_printers: True
-        proaluno_update_keys: False
+        proaluno_update_keys: True
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:
