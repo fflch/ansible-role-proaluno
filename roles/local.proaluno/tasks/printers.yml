@@ -87,7 +87,11 @@
     -o printer-error-policy=abort-job
     -o printer-is-shared=false
     -o PageSize=A4
+    -o sides=two-sided-long-edge
+    -o fit-to-page
+    -o Duplex=DuplexNoTumble
     -o Media=A4
+    -o emit-jcl
     - -E
 # lpadmin -E option forces encryption when connecting to the server
   args:
