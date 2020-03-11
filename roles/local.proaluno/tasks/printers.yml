@@ -85,6 +85,7 @@
     -o fit-to-page
     -o Duplex=DuplexNoTumble
     -o Media=A4
+    -o emit-jcl
     - -E
 # lpadmin -E option forces encryption when connecting to the server
   args:
