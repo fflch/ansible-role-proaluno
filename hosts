@@ -137,7 +137,6 @@ linux084019285 ansible_host="10.184.0.168"
 
 [sti]
 linux008038368 ansible_host="10.64.0.73"
-linux084019308 ansible_host="10.184.0.163"
 
 [fcs:vars]
 ansible_connection=ssh

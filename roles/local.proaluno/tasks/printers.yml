@@ -22,6 +22,12 @@
     dest: /usr/lib/cups/filter/gstopdf17
     mode: '0755'
 
+- name: Copy gstopdf14
+  copy:
+    src: files/gstopdf14
+    dest: /usr/lib/cups/filter/gstopdf14
+    mode: '0755'
+
 - name: Copy lpoptions
   copy:
     src: files/lpoptions
@@ -50,7 +56,7 @@
 - name: Append string to list
   set_fact:
     printers_to_keep: "{{ printers_to_keep + [item.name] }}"
-  loop: "{{ cups_printers }}"
+  loop: "{{ proaluno_printers }}"
 
 - name: removing all installed printers
   shell: lpadmin -x {{ item }}
@@ -81,12 +87,16 @@
     -o printer-error-policy=abort-job
     -o printer-is-shared=false
     -o PageSize=A4
+    -o sides=two-sided-long-edge
+    -o fit-to-page
+    -o Duplex=DuplexNoTumble
     -o Media=A4
+    -o emit-jcl
     - -E
 # lpadmin -E option forces encryption when connecting to the server
   args:
     chdir: /usr/share/cups/model
-  loop: "{{ cups_printers }}"
+  loop: "{{ proaluno_printers }}"
 
 - name: Disable services
   systemd:

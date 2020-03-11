@@ -9,6 +9,4 @@ do
     fi
 done
 
-
-
 /proaluno/limpa_fila_impressao.sh

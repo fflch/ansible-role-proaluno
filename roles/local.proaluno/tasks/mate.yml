@@ -51,6 +51,12 @@
     dest: /proaluno/login.sh
     mode: '0755'
 
+- name: Copy /proaluno/logout.sh
+  copy:
+    src: files/logout.sh
+    dest: /proaluno/logout.sh
+    mode: '0755'
+
 - name: Copy /proaluno/dconf-dump.ini
   copy:
     src: files/dconf-dump.ini
