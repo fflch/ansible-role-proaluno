@@ -4,42 +4,7 @@
   become: yes
 
   vars:
-    proaluno_remove_all_printers: False
     realm: "proaluno.usp.br"
-    cups_server: "ipp://192.168.8.43:631/printers"
-    cups_printers:
-
-      - name: impressora
-        device: "{{cups_server}}/financeiro_ppd"
-        model: 'K7600_processado.ppd'
-
-      - name: impressora_financeiro
-        device: "{{cups_server}}/financeiro_ppd"
-        model: 'K7600_processado.ppd'
-
-      - name: impressora_letras
-        device: "{{cups_server}}/proaluno_letras_ppd"
-        model: 'K7600_processado.ppd'
-
-      - name: impressora_fcs
-        device: "{{cups_server}}/proaluno_fcs_ppd"
-        model: 'K7600_processado.ppd'
-
-      - name: impressora_gh
-        device: "{{cups_server}}/proaluno_gh_ppd"
-        model: 'K7600_processado.ppd'
-
-      - name: impressora_gh
-        device: "{{cups_server}}/proaluno_gh_ppd"
-        model: 'K7600_processado.ppd'
-
-      - name: financeiro_openprinting
-        device: "{{cups_server}}/adm_samsung_pb_k7500lx_fin"
-        model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
-
-      - name: pdfprinter
-        device: "{{cups_server}}/pdfprinter"
-        model: 'raw'
 
   tasks:
 
@@ -48,11 +13,46 @@
         name: local.proaluno
       vars:
         proaluno_check_quota: "http://quotas.local.fflch.usp.br/"
-        proaluno_deploy_printers: True
         proaluno_install_pacotes_debian: False
+        proaluno_update_keys: False
+        proaluno_deploy_printers: True
         proaluno_install_mate: True
         proaluno_remove_all_printers: True
-        proaluno_update_keys: False
+        proaluno_cups_server: "192.168.8.43:631"
+        proaluno_sala: "pdfprinter"
+
+        proaluno_printers:
+          - name: impressora
+            device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
+            model: 'K7600_processado.ppd'
+
+          - name: impressora_financeiro
+            device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
+            model: 'K7600_processado.ppd'
+
+          - name: impressora_letras
+            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_letras_ppd"
+            model: 'K7600_processado.ppd'
+
+          - name: impressora_fcs
+            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_fcs_ppd"
+            model: 'K7600_processado.ppd'
+
+          - name: impressora_gh
+            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_gh_ppd"
+            model: 'K7600_processado.ppd'
+
+          - name: impressora_gh
+            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_gh_ppd"
+            model: 'K7600_processado.ppd'
+
+          - name: financeiro_openprinting
+            device: "ipp://{{proaluno_cups_server}}/printers/adm_samsung_pb_k7500lx_fin"
+            model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
+
+          - name: pdfprinter
+            device: "ipp://{{proaluno_cups_server}}/printers/pdfprinter"
+            model: 'raw'
 
     - name: Corrige o timezone para America/Sao_Paulo
       include_role:

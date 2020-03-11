@@ -42,11 +42,32 @@ imprime_fila()
 		return 0
 	fi
 
-	echo "${BOLD}Documentos a serem processados na fila local: ${NC}"
+	echo "${BOLD}Documentos em processamento e ainda NÃO enviados para a impressora${NC}"
 	echo "$lpq_table" | head -n 11
 
 	if [ $remaining -gt 0 ]; then
 		echo "${BOLD}Além desses, há mais${NC} ${RED}$remaining ${NC}${BOLD}trabalhos na fila local de impressão${NC}"
+	fi
+
+}
+
+# Imprime a fila de impressão server
+imprime_fila_server()
+{
+    lpq_sever=$(lpq -a -P {{proaluno_sala}} -h {{proaluno_cups_server}})
+	local num_lines=$(echo "$lpq_sever" | wc -l)
+	local remaining=$(expr $num_lines - 11)
+
+	if [ -z "$lpq_sever" ]; then
+		echo "${BOLD}Não há documentos na fila da impressora${NC}"
+		return 0
+	fi
+
+	echo "${BOLD}Documentos na fila da impressora:${NC}"
+	echo "$lpq_sever" | head -n 11
+
+	if [ $remaining -gt 0 ]; then
+		echo "${BOLD}Além desses, há mais${NC} ${RED}$remaining ${NC}${BOLD}trabalhos na fila da impressora${NC}"
 	fi
 }
 
@@ -69,6 +90,8 @@ imprime()
 		fi
 		echo ""
 		imprime_fila
+		echo ""
+        imprime_fila_server
         sleep 3 # Espero 3 segundos na tentativa de não sobrecarregar o servidor.
 	done
 }

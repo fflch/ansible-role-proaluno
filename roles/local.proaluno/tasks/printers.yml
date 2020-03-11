@@ -56,7 +56,7 @@
 - name: Append string to list
   set_fact:
     printers_to_keep: "{{ printers_to_keep + [item.name] }}"
-  loop: "{{ cups_printers }}"
+  loop: "{{ proaluno_printers }}"
 
 - name: removing all installed printers
   shell: lpadmin -x {{ item }}
@@ -96,7 +96,7 @@
 # lpadmin -E option forces encryption when connecting to the server
   args:
     chdir: /usr/share/cups/model
-  loop: "{{ cups_printers }}"
+  loop: "{{ proaluno_printers }}"
 
 - name: Disable services
   systemd:
