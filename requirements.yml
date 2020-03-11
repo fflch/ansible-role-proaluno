@@ -17,3 +17,4 @@
 - src: Stouts.hostname
 - src: geerlingguy.ntp
 - src: cmprescott.chrome
+- src: gantsign.visual-studio-code
