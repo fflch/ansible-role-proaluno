@@ -37,6 +37,7 @@
 
 *JCLBegin: "<1B>%-12345X@PJL JOB<0D0A>"
 *JCLToPSInterpreter: "@PJL ENTER LANGUAGE = POSTSCRIPT<0D0A>"
+*JCLToPDFInterpreter: "@PJL ENTER LANGUAGE = PDF<0D0A>"
 *JCLEnd: "<1B>%-12345X"
 
 *cupsPreFilter: "application/pdf 100 gstopdf17"
