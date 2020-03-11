@@ -22,6 +22,12 @@
     dest: /usr/lib/cups/filter/gstopdf17
     mode: '0755'
 
+- name: Copy gstopdf14
+  copy:
+    src: files/gstopdf14
+    dest: /usr/lib/cups/filter/gstopdf14
+    mode: '0755'
+
 - name: Copy lpoptions
   copy:
     src: files/lpoptions
