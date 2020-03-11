@@ -40,7 +40,6 @@
 *JCLEnd: "<1B>%-12345X"
 
 *cupsFilter2: "application/vnd.cups-pdf application/vnd.cups-pdf 10 -"
-*cupsFilter2: "application/vnd.cups-raster application/vnd.cups-raster 0 -"
 
 *% =========================================================
 *% Installable Options
