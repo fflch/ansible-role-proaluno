@@ -103,6 +103,10 @@
       include_role:
         name: cmprescott.chrome
 
+    - name: gantsign.visual-studio-code
+      include_role:
+        name: gantsign.visual-studio-code
+
     # Essa task é só para o ambiente de dev
     - name: servidor de impressão dev
       lineinfile:
