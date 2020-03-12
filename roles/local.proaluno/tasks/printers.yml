@@ -73,12 +73,8 @@
   ignore_errors: True
 
 
-#### Exemplo de instalação de uma impressora
-# lpadmin -p nome_impressora 
-#    -v ipp://cups.fflch.usp.br:631/printers/let_samsung_pb_k7500lx_proaluno 
-#    -m K7600.ppd -o printer-error-policy=abort-job 
-#    -o sides=two-sided-long-edge -E
-#    -v tea4cups:{{ item.device }}
+#### Instalação das impressoras
+
 - name: Install printers
   shell: >
     /usr/sbin/lpadmin -p {{ item.name }}
@@ -86,12 +82,9 @@
     -m {{ item.model }}
     -o printer-error-policy=abort-job
     -o printer-is-shared=false
-    -o PageSize=A4
     -o sides=two-sided-long-edge
-    -o fit-to-page
-    -o Duplex=DuplexNoTumble
     -o Media=A4
-    -o emit-jcl
+    -o PageSize=A4
     - -E
 # lpadmin -E option forces encryption when connecting to the server
   args:

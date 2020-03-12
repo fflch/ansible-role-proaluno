@@ -58,3 +58,9 @@ Criar um usuário no samba:
 
 Agora é só rebootar a VM e logar na interface com usuário criado no samba.
 
+Comandos úteis:
+
+    ansible vm -a "/usr/sbin/init 0"
+    ansible vm -a "/sbin/reboot"
+    ansible vm -m ping
+
