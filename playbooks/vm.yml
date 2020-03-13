@@ -19,34 +19,22 @@
         proaluno_install_mate: True
         proaluno_remove_all_printers: True
         proaluno_cups_server: "192.168.8.43:631"
-        proaluno_sala: "pdfprinter"
+        proaluno_sala: "financeiro_ppd"
 
         proaluno_printers:
-          - name: impressora
+          - name: impressora_processado14
             device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
-            model: 'K7600_processado.ppd'
+            model: 'K7600_processado_gstopdf14.ppd'
 
-          - name: impressora_financeiro
+          - name: impressora_processado17
             device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
-            model: 'K7600_processado.ppd'
+            model: 'K7600_processado_gstopdf17.ppd'
 
-          - name: impressora_letras
-            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_letras_ppd"
-            model: 'K7600_processado.ppd'
+          - name: impressora_direto
+            device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
+            model: 'K7600_direto.ppd'
 
-          - name: impressora_fcs
-            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_fcs_ppd"
-            model: 'K7600_processado.ppd'
-
-          - name: impressora_gh
-            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_gh_ppd"
-            model: 'K7600_processado.ppd'
-
-          - name: impressora_gh
-            device: "ipp://{{proaluno_cups_server}}/printers/proaluno_gh_ppd"
-            model: 'K7600_processado.ppd'
-
-          - name: financeiro_openprinting
+          - name: impressora_openprinting
             device: "ipp://{{proaluno_cups_server}}/printers/adm_samsung_pb_k7500lx_fin"
             model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
 

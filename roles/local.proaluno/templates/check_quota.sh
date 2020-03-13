@@ -54,7 +54,7 @@ imprime_fila()
 # Imprime a fila de impressão server
 imprime_fila_server()
 {
-    lpq_sever=$(lpq -a -P {{proaluno_sala}} -h {{proaluno_cups_server}})
+    lpq_sever=$(lpq -h {{proaluno_cups_server}} -a -P {{proaluno_sala}})
 	local num_lines=$(echo "$lpq_sever" | wc -l)
 	local remaining=$(expr $num_lines - 11)
 

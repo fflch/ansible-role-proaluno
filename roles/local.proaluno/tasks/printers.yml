@@ -41,7 +41,8 @@
     mode: '0755'
   loop:
     - K7600_direto.ppd
-    - K7600_processado.ppd
+    - K7600_processado_gstopdf14.ppd
+    - K7600_processado_gstopdf17.ppd
 
 #### remover impressoras antes de instalar a nova
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
@@ -74,11 +75,11 @@
 
 
 #### Instalação das impressoras
-
+#    -v tea4cups:{{ item.device }}
 - name: Install printers
   shell: >
     /usr/sbin/lpadmin -p {{ item.name }}
-    -v tea4cups:{{ item.device }}
+    -v {{ item.device }}
     -m {{ item.model }}
     -o printer-error-policy=abort-job
     -o printer-is-shared=false

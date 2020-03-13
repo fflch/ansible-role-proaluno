@@ -18,19 +18,20 @@ su $TEAUSERNAME
 
 if [[ "$TEASTATUS" -eq 0 ]];
 then
-  zenity --warning --no-wrap --text \
+  zenity --info --no-wrap --title "Atenção" --text \
   "
     <span>
-      O arquivo <span size='x-large' weight='bold'> $TEATITLE </span> foi enviado para impressora com SUCESSO!                                               
+      O arquivo <span size='x-large' weight='bold'> $TEATITLE </span> foi impresso com SUCESSO!                                               
     </span>
   " &
 else
-  zenity --warning --no-wrap --text \
+  zenity --info --no-wrap --title "Atenção" --text \
   "
     <span>
       Impressão do arquivo <span size='x-large' weight='bold'> $TEATITLE </span> CANCELADA!                                                                  
-      Possíveis motivos: suas quotas acabaram ou a impressora está congestionada.                                                                            
+      Possíveis motivos: suas quotas acabaram, impressora está congestionada ou arquivo é muito grande para ser processado.                                                                          
     </span>
   " &
 fi
 
+exit 0
