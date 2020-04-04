@@ -5,8 +5,8 @@ código do processo de build das
 máquinas das salas da pró-alunos da FFLCH.
 
 Esta aberto a contribuições via mecanismos de pull requests e issues
-do github. É uma iniciativa dos alunos/as de graduação da FFLCH
-e do FLUSP (flusp.ime.usp.br).
+do github. É uma iniciativa dos alunos/as de graduação da FFLCH juntamente com a Seção  Técnica de Informática, com apoio
+técnico do FLUSP (flusp.ime.usp.br) e do CCSL.
 
 
 ## Imagem
