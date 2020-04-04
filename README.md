@@ -1,7 +1,13 @@
 # Pró-Aluno FFLCH
 
-Esse repositório contém a infraestrutura como código completo dos builds das 
-máquinas das salas da pró-alunos da FFLCH. 
+Esse repositório contém a infraestrutura completa como
+código do processo de build das 
+máquinas das salas da pró-alunos da FFLCH.
+
+Esta aberto a contribuições via mecanismos de pull requests e issues
+do github. É uma iniciativa dos alunos/as de graduação da FFLCH
+e do FLUSP (flusp.ime.usp.br).
+
 
 ## Imagem
 
