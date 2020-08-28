@@ -29,6 +29,8 @@
       - gimp-help-pt
       - inkscape
       - audacity
+      - p7zip-full
+      - p7zip-rar
       - git
       - gvfs-backends # para celulares
       - gnome-disk-utility
