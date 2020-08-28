@@ -2,6 +2,7 @@
   apt:
     pkg:
       - terminator
+      - kolourpaint
       - vlc
       - build-essential
       - firmware-linux-nonfree
