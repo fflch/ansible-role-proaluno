@@ -1,0 +1,36 @@
+- name: Corrige o timezone para America/Sao_Paulo
+  include_role:
+    name: adriagalin.timezone
+  vars:
+    ag_timezone: 'America/Sao_Paulo'
+
+- name: infOpen.locales
+  include_role:
+    name: infOpen.locales
+  vars:
+    locales_to_configure:
+      - name: 'en_US.UTF-8'
+        modifier: 'UTF-8'
+      - name: 'pt_BR.UTF-8'
+        modifier: 'UTF-8'
+    locales_defaults:
+      LANG: 'pt_BR.UTF-8'
+      LC_CTYPE: 'pt_BR.UTF-8'
+      LANGUAGE: 'pt_BR.UTF-8'
+
+- name: geerlingguy.ntp
+  include_role:
+    name: geerlingguy.ntp
+  vars:
+    ntp_timezone: 'America/Sao_Paulo'
+    ntp_servers:
+      - 192.168.8.202
+
+- name: Configura resolv.conf para consultar DNSs no próprio samba
+  include_role:
+    name: blackstar257.resolv
+  vars:
+    resolv_conf_nameservers:
+      - 192.168.8.202
+    resolv_conf_search_domains:
+      - "{{ realm }}"

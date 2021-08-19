@@ -18,66 +18,12 @@
         proaluno_deploy_printers: True
         proaluno_install_mate: True
         proaluno_remove_all_printers: True
-        proaluno_cups_server: "192.168.8.43:631"
-        proaluno_sala: "financeiro_ppd"
+        proaluno_cups_server: "192.168.7.201:631"
 
         proaluno_printers:
-          - name: impressora_processado14
-            device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
-            model: 'K7600_processado_gstopdf14.ppd'
-
-          - name: impressora_processado17
-            device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
-            model: 'K7600_processado_gstopdf17.ppd'
-
-          - name: impressora_direto
-            device: "ipp://{{proaluno_cups_server}}/printers/financeiro_ppd"
-            model: 'K7600_direto.ppd'
-
-          - name: impressora_openprinting
-            device: "ipp://{{proaluno_cups_server}}/printers/adm_samsung_pb_k7500lx_fin"
-            model: 'openprinting-ppds:0/ppd/openprinting/Samsung/PS/Samsung_K7600_Series.ppd'
-
           - name: pdfprinter
             device: "ipp://{{proaluno_cups_server}}/printers/pdfprinter"
             model: 'raw'
-
-    - name: Corrige o timezone para America/Sao_Paulo
-      include_role:
-        name: adriagalin.timezone
-      vars:
-        ag_timezone: 'America/Sao_Paulo'
-
-    - name: infOpen.locales
-      include_role:
-        name: infOpen.locales
-      vars:
-        locales_to_configure:
-          - name: 'en_US.UTF-8'
-            modifier: 'UTF-8'
-          - name: 'pt_BR.UTF-8'
-            modifier: 'UTF-8'
-        locales_defaults:
-          LANG: 'pt_BR.UTF-8'
-          LC_CTYPE: 'pt_BR.UTF-8'
-          LANGUAGE: 'pt_BR.UTF-8'
-
-    - name: geerlingguy.ntp
-      include_role:
-        name: geerlingguy.ntp
-      vars:
-        ntp_timezone: 'America/Sao_Paulo'
-        ntp_servers:
-          - 192.168.8.201
-
-    - name: Configura resolv.conf para consultar DNSs no próprio samba
-      include_role:
-        name: blackstar257.resolv
-      vars:
-        resolv_conf_nameservers:
-          - 192.168.8.201
-        resolv_conf_search_domains:
-          - "{{ realm }}"
 
     - name: fflch.domain-member
       include_role:
@@ -87,16 +33,8 @@
         domain_member_samba_server: "samba"
         domain_member_password: "Pr0Aluno123"
 
-    - name: cmprescott.chrome
-      include_role:
-        name: cmprescott.chrome
-
-    - name: gantsign.visual-studio-code
-      include_role:
-        name: gantsign.visual-studio-code
-
     # Essa task é só para o ambiente de dev
     - name: servidor de impressão dev
       lineinfile:
         path: /etc/hosts
-        line: "192.168.8.92 quotas.local.fflch.usp.br"  
+        line: "192.168.7.203 quotas.local.fflch.usp.br"  

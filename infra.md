@@ -1,12 +1,15 @@
+## vagrant:
+
+    sudo apt install virt-manager libvirt-dev
+    vagrant plugin install vagrant-libvirt
+
 ## cups
 
 ip: 192.168.7.201
-## Cups
+    apt install cups cups-tea4cups printer-driver-all openprinting-ppds
 
-apt install cups cups-tea4cups printer-driver-all openprinting-ppds
-
-mkdir -p /etc/systemd/system/org.cups.cupsd.socket.d/
-/etc/systemd/system/org.cups.cupsd.socket.d/override.conf
+    mkdir -p /etc/systemd/system/org.cups.cupsd.socket.d/
+    /etc/systemd/system/org.cups.cupsd.socket.d/override.conf
 
 [Socket]
 ListenStream=631
@@ -40,11 +43,11 @@ Corrigindo locale:
     locale-gen pt_PT.UTF-8
     dpkg-reconfigure locales
 
-Configurações de resolução de nome:
+Configurações de resolução do nome samba.proaluno.usp.br:
 
 - ip: 192.168.7.202
 - /etc/hostname: samba.proaluno.usp.br
-- /etc/hosts: 127.0.1.1 samba samba.proaluno.usp.br 
+- /etc/hosts: 127.0.1.1 samba samba.proaluno.usp.br
 
 Instalação de pacotes:
 
@@ -112,11 +115,6 @@ https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Print_Server :
 
     rpc_server:spoolss = external
     rpc_daemon:spoolssd = fork
-
-Manipulação de objetos com ldap
-https://wiki.samba.org/index.php/Setting_up_RFC2307_in_AD :
-
-    idmap_ldb:use rfc2307 = yes
 
 Seção **printers** para todas impressoras:
 
