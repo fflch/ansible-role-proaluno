@@ -23,6 +23,8 @@ do resto do ambiente.
  - Instalação das impressoras
  - Instalação de pacotes por apt
 
+![](https://github.com/fflch/proaluno/raw/master/diagrama.png)
+
 ### Preparação do ambiente (testado com debian 10)
 
 Instale na sua distro: ansible, vagrant
