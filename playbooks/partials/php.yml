@@ -1,0 +1,65 @@
+# Essa task é usada em todo playbook que necessita de PHP
+# playbooks que utilizam:  aegir, zoneminder, phpserver
+
+- name: Instala PHP versions
+  include_role:
+    name: geerlingguy.php-versions
+  vars:
+    php_version: "7.4"
+
+- name: Instala PHP
+  include_role:
+    name: geerlingguy.php
+  vars:
+    php_default_version_debian: '7.4'
+    php_version: "{{php_default_version_debian}}"
+    php_packages_extra:
+      - memcached
+      - msmtp
+      - php{{ php_default_version_debian }}-mbstring
+      - php{{ php_default_version_debian }}-curl
+      - php{{ php_default_version_debian }}-sybase
+      - php{{ php_default_version_debian }}-mysql
+      - php{{ php_default_version_debian }}-memcached
+      - php{{ php_default_version_debian }}-xml
+      - php{{ php_default_version_debian }}-gd
+      - php{{ php_default_version_debian }}-zip
+      - php{{ php_default_version_debian }}-intl
+      - php{{ php_default_version_debian }}-xmlrpc
+      - php{{ php_default_version_debian }}-soap
+    # https://github.com/geerlingguy/ansible-role-php/blob/master/defaults/main.yml
+    php_memory_limit: "512M"
+    php_max_execution_time: "300"
+    php_max_input_time: "120"
+    php_upload_max_filesize: "20M"
+    php_max_file_uploads: "20"
+    php_date_timezone: "America/Sao_Paulo"
+    php_max_input_vars: "2000"
+
+- name: Instalação do apache
+  include_role:
+    name: geerlingguy.apache
+  vars:
+    apache_create_vhosts: false
+    apache_remove_default_vhost: false
+    apache_mods_enabled:
+      - rewrite.load
+      - ssl.load
+  
+- include_role:
+    name: geerlingguy.composer
+  vars:
+    composer_version_branch: '--1'
+
+- name: Update repositories cache and install "libapache2-mod-php7.4" package
+  apt:
+    name: "libapache2-mod-php7.4"
+    update_cache: yes
+
+- name: php cli unlimited
+  lineinfile:
+    path: /etc/php/7.4/cli/php.ini
+    regexp: 'memory_limit'
+    line: 'memory_limit = -1'
+    backrefs: yes
+

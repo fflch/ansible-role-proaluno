@@ -6,8 +6,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ### global configs
     config.ssh.insert_key = false # important
 
-    # VM samba
-    config.vm.define :"samba" do |host|
+    # VM cups
+    config.vm.define :"cups" do |host|
       host.vm.box = "generic/debian10"
       host.vm.network :private_network,
         :ip => "192.168.7.201",
@@ -19,8 +19,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       end
     end
 
-    # VM cups
-    config.vm.define :"cups" do |host|
+    # VM samba
+    config.vm.define :"samba" do |host|
       host.vm.box = "generic/debian10"
       host.vm.network :private_network,
         :ip => "192.168.7.202",

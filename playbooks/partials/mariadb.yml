@@ -1,0 +1,32 @@
+- name: Python mysql dependency
+  apt:
+    name: python-mysqldb
+    state: latest
+
+- name: Deploy Mysql
+  include_role:
+    name: geerlingguy.mysql
+  vars:
+    mysql_root_username: root
+    mysql_root_password: "Pr0Aluno123"
+    mysql_bind_address: '*'
+
+    mysql_databases:
+       - name: quotas
+         collation: utf8_general_ci
+         encoding: utf8
+
+       - name: faker
+         collation: utf8_general_ci
+         encoding: utf8
+
+    mysql_users:
+       - name: quotas
+         host: '%'
+         password: "Pr0Aluno123"
+         priv: "quotas.*:ALL,GRANT"
+
+       - name: faker
+         host: '%'
+         password: "Pr0Aluno123"
+         priv: "faker.*:ALL,GRANT"

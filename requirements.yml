@@ -1,14 +1,39 @@
-- name: fflch.install_samba
-  src: https://github.com/fflch/ansible-role-install-samba.git
-  version: 1.0.1
-
 - name: fflch.sambadc
   src: https://github.com/fflch/ansible-role-sambadc.git
-  version: master
+  version: 1.0.2
 
 - name: fflch.domain-member
   src: https://github.com/fflch/ansible-role-domain-member.git
+  version: 1.0.0
+
+- name: fflch.deploy_laravel
+  src: https://github.com/fflch/ansible-role-deploy-laravel.git
+  version: 1.0.7
+
+- src: HP41.cups
+  version: 52a655c95e959d7089c4cae93a7e33d7028b0fb2
+
+- name: HP41.cups
+  src: https://github.com/verboEse/ansible-cups.git
   version: master
+
+- src: geerlingguy.mysql
+  version: 3.3.2
+
+- src: geerlingguy.php-versions
+  version: 5.0.0
+
+- src: geerlingguy.php
+  version: 4.6.1
+
+- src: geerlingguy.composer
+  version: 1.9.0
+
+- src: geerlingguy.apache
+  version: 3.1.0
+
+- src: geerlingguy.pip
+  version: 2.0.0
 
 - src: infOpen.locales
 - src: ontic.ntp

@@ -1,20 +1,16 @@
-[fcs]
-linux008038404 ansible_host="10.184.1.2"
+######### Ambiente de desenvolvimento ######### 
+[vagrant]
+cups ansible_host="192.168.7.201"
+samba ansible_host="192.168.7.202"
+laravel ansible_host="192.168.7.203"
+terminal ansible_host="192.168.7.204"
 
-[gh]
-linux084019240 ansible_host="10.184.0.102"
+[vagrant:vars]
+ansible_user="vagrant"
+ansible_ssh_private_key_file="~/.vagrant.d/insecure_private_key"
 
-[letras]
-linux008034918 ansible_host="10.184.0.253"
-
-[sti]
-linux008038368 ansible_host="10.64.0.73"
-
+########## Configurações ##########
 [fcs:vars]
-ansible_connection=ssh
-ansible_user=root
-
-[wake:vars]
 ansible_connection=ssh
 ansible_user=root
 
@@ -26,16 +22,17 @@ ansible_user=root
 ansible_connection=ssh
 ansible_user=root
 
-[sti:vars]
-ansible_connection=ssh
-ansible_user=root
+########## Salas  ##########
+[fcs]
+linux008038404 ansible_host="10.184.1.2"
 
-######### Ambiente de desenvolvimento ######### 
-[vagrant]
-samba ansible_host="192.168.7.201"
-vm ansible_host="192.168.7.204"
+[gh]
+linux084019240 ansible_host="10.184.0.102"
 
-[vagrant:vars]
-ansible_user="vagrant"
-ansible_ssh_private_key_file="~/.vagrant.d/insecure_private_key"
+[letras]
+linux008034918 ansible_host="10.184.0.253"
+
+
+
+
 

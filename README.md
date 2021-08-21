@@ -4,10 +4,8 @@ Esse repositório contém a infraestrutura completa como
 código do processo de build das 
 máquinas das salas da pró-alunos da FFLCH.
 
-Esta aberto a contribuições via mecanismos de pull requests e issues
-do github. É uma iniciativa dos alunos/as de graduação da FFLCH juntamente com a Seção  Técnica de Informática, com apoio
-técnico do FLUSP (flusp.ime.usp.br) e do CCSL.
-
+Esta aberto a contribuições via de pull requests e issues do github. 
+Foi inicialmente uma iniciativa dos alunos/as de graduação da FFLCH juntamente com a Seção  Técnica de Informática e apoio técnico do FLUSP (flusp.ime.usp.br) e do CCSL.
 
 ## Imagem
 
@@ -25,8 +23,6 @@ do resto do ambiente.
  - Instalação das impressoras
  - Instalação de pacotes por apt
 
-## Informações para contribuição:
-
 ### Preparação do ambiente (testado com debian 10)
 
 Instale na sua distro: ansible, vagrant
@@ -41,7 +37,7 @@ Instalação do plugin do libvirt no ansible:
 
 Ligar as VMs:
     
-    git clone git@github.com:fflch/proaluno.git
+    git clone git@github.com:VOCE-NO-GITHUB/proaluno.git
     cd proaluno
     vagrant up
 
@@ -49,24 +45,38 @@ Instalação das roles do ansible
 
     ansible-galaxy install -r requirements.yml
 
-Provisionando o servidor samba com senha do Administrator Pr0Aluno123:
+Provisionando infraestrutura:
 
-    ansible-playbook playbooks/samba.yml
+    ansible-playbook playbooks/dev/cups.yml
+    ansible-playbook playbooks/dev/samba.yml
+    ansible-playbook playbooks/dev/laravel.yml
+    ansible-playbook playbooks/dev/terminal.yml
 
-Provisionando a VM:
+A senha de todos serviços nesse ambiente de teste é: Pr0Aluno123
 
-    ansible-playbook playbooks/vm.yml
-
-Criar um usuário no samba:
+Criando um usuário no samba com número USP 8001:
 
     vagrant ssh samba
-    sudo samba-tool user create FULANO
+    sudo samba-tool user create 8001
 
 Agora é só rebootar a VM e logar na interface com usuário criado no samba.
 
-Comandos úteis:
+Na máquina hospederia em /etc/hosts:
 
-    ansible vm -a "/usr/sbin/init 0"
-    ansible vm -a "/sbin/reboot"
-    ansible vm -m ping
+    192.168.7.203 quotas.proaluno.usp.br
+    192.168.7.203 faker.proaluno.usp.br
+
+Rota de controle de quota /check/{user}/{printer}/{pages}:
+
+    http://quotas.proaluno.usp.br/check/8001/impressora_pdf_tea4cups/2
+
+Rota que verifica quantas páginas foram impressas hoje para o usuário 8001:
+
+    http://quotas.proaluno.usp.br/pages/today/8001
+
+Usuário admin usando no laravel:
+
+    999 admin do laravel
+
+
 

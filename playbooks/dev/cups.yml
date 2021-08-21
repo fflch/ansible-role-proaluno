@@ -1,0 +1,68 @@
+---
+- name: cups
+  become: yes
+  hosts: cups
+
+  vars:
+    # URL do sistema laravel
+    check_endpoint: http://quotas.proaluno.usp.br/check
+
+  tasks:
+
+    - import_tasks: ../partials/locale.yml
+
+    - name: servidor de impressão dev
+      lineinfile:
+        path: /etc/hosts
+        line: "192.168.7.203 quotas.proaluno.usp.br" 
+
+    - name: change root's password
+      user:
+        name: root
+        password: "{{ 'Pr0Aluno123' | password_hash('sha512') }}"
+
+    - name: Import tea4cups
+      import_tasks: ../partials/tea4cups.yml
+      vars:
+        quotadb_host: 192.168.7.203
+        quotadb_user: quotas
+        quotadb_password: 'Pr0Aluno123'
+        quotadb_dbname: quotas
+
+    - name:
+      include_role:
+        name: HP41.cups
+      vars:
+        cups_cupsd_conf_template: "../../templates/cupsd.conf.j2"
+        cups_ricoh_openprinting_ppds: False
+        cups_purge_all_printers_and_classes: False
+        cups_admin_grp: lpadmin
+        cups_expect_pkgs: 
+          - expect
+        cups_printer_list:
+          - name: "impressora_pdf"
+            printer_or_class: "printer"
+            state: "present"
+            uri: "cups-pdf:/"
+
+          - name: "impressora_pdf_tea4cups"
+            printer_or_class: "printer"
+            state: "present"
+            uri: "tea4cups:cups-pdf:/"
+
+    - name: org.cups.cupsd.socket.d
+      file:
+        path: /etc/systemd/system/org.cups.cupsd.socket.d/
+        recurse: yes
+        state: directory
+
+    - name: copy socket
+      template:
+        src: ../../templates/override.conf
+        dest: /etc/systemd/system/org.cups.cupsd.socket.d/override.conf
+    
+    - name: Restart service
+      service:
+        name: cups
+        state: restarted
+
