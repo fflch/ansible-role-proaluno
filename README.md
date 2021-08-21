@@ -61,8 +61,6 @@ Criando um usuário no samba com número USP 8001:
     vagrant ssh samba
     sudo samba-tool user create 8001
 
-Agora é só rebootar a VM e logar na interface com usuário criado no samba.
-
 Na máquina hospederia em /etc/hosts:
 
     192.168.7.203 quotas.proaluno.usp.br
