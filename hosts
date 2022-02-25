@@ -24,7 +24,10 @@ ansible_user=root
 
 ########## Salas  ##########
 [fcs]
-linux008038404 ansible_host="10.184.1.2"
+linux008046654 ansible_host="10.172.0.240"
+linux008046636 ansible_host="10.172.0.73"
+linux008048036 ansible_host="10.172.1.201"
+linux008048035 ansible_host="10.172.1.200"
 
 [gh]
 linux084019240 ansible_host="10.184.0.102"
