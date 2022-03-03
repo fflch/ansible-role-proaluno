@@ -7,11 +7,12 @@
     realm: "smbdomain.fflch.usp.br"
     cups_server: "ipp://cups.fflch.usp.br:631/printers"
     sala: "proaluno_fcs_"
+    proaluno_remove_all_printers: False
     cups_printers:
 
       - name: impressora
         device: "{{cups_server}}/proaluno_fcs_ppd"
-        model: 'K7600_processado.ppd'
+        model: 'K7600_processado_gstopdf17.ppd'
 
   tasks:
 
