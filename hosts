@@ -52,7 +52,19 @@ linux008046636 ansible_host="10.172.0.73"
 linux008046633 ansible_host="10.172.0.239"
 
 [gh]
-linux084019240 ansible_host="10.184.0.102"
+#linux084019277 ansible_host="10.204.1.27"
+#linux084019233 ansible_host="10.204.1.28"
+#linux084019230 ansible_host="10.204.1.29"
+#linux084019227 ansible_host="10.204.1.30"
+#linux084019248 ansible_host="10.204.1.31"
+#linux084019243 ansible_host="10.204.1.32"
+#linux084019246 ansible_host="10.204.1.33"
+#linux084019247 ansible_host="10.204.1.34"
+#linux084019229 ansible_host="10.204.1.35"
+#linux084019260 ansible_host="10.204.1.36"
+#linux084019250 ansible_host="10.204.1.37"
+#linux084019228 ansible_host="10.204.1.38"
+#linux084019266 ansible_host="10.204.1.39"
 
 [letras]
 linux084019271 ansible_host="10.140.1.28"
