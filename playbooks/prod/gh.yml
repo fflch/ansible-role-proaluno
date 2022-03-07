@@ -11,7 +11,7 @@
 
       - name: impressora
         device: "{{cups_server}}/proaluno_gh_ppd"
-        model: 'K7600_processado.ppd'
+        model: 'K7600_processado_gstopdf17.ppd' 
 
   tasks:
 
