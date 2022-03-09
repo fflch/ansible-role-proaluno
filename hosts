@@ -24,13 +24,47 @@ ansible_user=root
 
 ########## Salas  ##########
 [fcs]
+linux008046638 ansible_host="10.172.0.234"
+linux008046640 ansible_host="10.172.0.242"
+linux008048027 ansible_host="10.172.0.207"
+linux008046648 ansible_host="10.172.0.63"
+linux008046634 ansible_host="10.172.1.172"
+linux008046653 ansible_host="10.172.0.71"
+linux008046655 ansible_host="10.172.0.237"
+linux008046639 ansible_host="10.172.0.233"
 linux008046654 ansible_host="10.172.0.240"
-linux008046636 ansible_host="10.172.0.73"
 linux008048036 ansible_host="10.172.1.201"
+linux008046635 ansible_host="10.172.0.245"
+linux008046649 ansible_host="10.172.0.244"
+linux008046641 ansible_host="10.172.1.234"
+linux008046650 ansible_host="10.172.1.233"
+linux008046651 ansible_host="10.172.0.241"
+linux008046652 ansible_host="10.172.0.238"
+linux008048037 ansible_host="10.172.1.26"
+linux008046643 ansible_host="10.172.0.235"
+linux008046654 ansible_host="10.172.0.77"
 linux008048035 ansible_host="10.172.1.200"
+linux008048028 ansible_host="10.172.0.3"
+linux008046647 ansible_host="10.64.0.79"
+linux008047636 ansible_host="10.172.0.68"
+linux008047637 ansible_host="10.172.0.77"
+linux008046636 ansible_host="10.172.0.73"
+linux008046633 ansible_host="10.172.0.239"
 
 [gh]
-linux084019240 ansible_host="10.184.0.102"
+#linux084019277 ansible_host="10.204.1.27"
+#linux084019233 ansible_host="10.204.1.28"
+#linux084019230 ansible_host="10.204.1.29"
+#linux084019227 ansible_host="10.204.1.30"
+#linux084019248 ansible_host="10.204.1.31"
+#linux084019243 ansible_host="10.204.1.32"
+#linux084019246 ansible_host="10.204.1.33"
+#linux084019247 ansible_host="10.204.1.34"
+#linux084019229 ansible_host="10.204.1.35"
+#linux084019260 ansible_host="10.204.1.36"
+#linux084019250 ansible_host="10.204.1.37"
+#linux084019228 ansible_host="10.204.1.38"
+#linux084019266 ansible_host="10.204.1.39"
 
 [letras]
 linux084019271 ansible_host="10.140.1.28"
@@ -75,8 +109,3 @@ linux084019105 ansible_host="10.140.1.68"
 linux084035793 ansible_host="10.140.1.69"
 linux084019111 ansible_host="10.140.1.70"
 linux084019308 ansible_host="10.140.1.71"
-
-
-
-
-
