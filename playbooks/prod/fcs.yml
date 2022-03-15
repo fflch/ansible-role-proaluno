@@ -7,8 +7,9 @@
     realm: "smbdomain.fflch.usp.br"
     cups_server: "ipp://cups.fflch.usp.br:631/printers"
     sala: "proaluno_fcs_"
-    proaluno_remove_all_printers: False
-    cups_printers:
+    proaluno_remove_all_printers: True
+    #cups_printers:
+    proaluno_printers:
 
       - name: impressora
         device: "{{cups_server}}/proaluno_fcs_ppd"
