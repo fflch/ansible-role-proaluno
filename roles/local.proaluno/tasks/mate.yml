@@ -99,11 +99,12 @@
     dest: /proaluno/check_quotas.sh
     mode: '0755'
 
-- name: Copy quotas.desktop
-  template:
-    src: templates/quotas.desktop
-    dest: '/etc/skel/Área de trabalho/quotas.desktop'
-    mode: '0755'
+# Daremos prioridade para o sistema web
+#- name: Copy quotas.desktop
+#  template:
+#    src: templates/quotas.desktop
+#    dest: '/etc/skel/Área de trabalho/quotas.desktop'
+#    mode: '0755'
 
 - name: Copy login.sh
   copy:
