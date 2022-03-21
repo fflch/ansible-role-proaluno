@@ -35,11 +35,12 @@
 - src: geerlingguy.pip
   version: 2.0.0
 
+- src: geerlingguy.ntp
+  version: 2.3.1
+
 - src: infOpen.locales
-- src: ontic.ntp
 - src: adriagalin.timezone
 - src: blackstar257.resolv
 - src: Stouts.hostname
-- src: geerlingguy.ntp
 - src: cmprescott.chrome
 - src: gantsign.visual-studio-code

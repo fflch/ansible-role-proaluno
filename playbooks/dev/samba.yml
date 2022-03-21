@@ -19,14 +19,19 @@
       vars:
         hostname_hostname: "{{ inventory_hostname }}.{{sambadc_realm}}"
 
-    - name: Cria um servidor ntp
+    - name: Configura ntp
       include_role:
-        name: ontic.ntp
+        name: geerlingguy.ntp
       vars:
+        ntp_manage_config: true
         ntp_timezone: 'America/Sao_Paulo'
         ntp_servers:
           - 'a.st1.ntp.br'
-          - 'b.st1.ntp.br'   
+          - 'b.st1.ntp.br' 
+        ntp_restrict:
+          - "127.0.0.1"
+          - "::1"
+          - "192.168.0.0 mask 255.255.0.0 nomodify notrap" 
 
     - name: Configura samba como um Domain Controller
       include_role:

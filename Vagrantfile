@@ -21,7 +21,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     # VM samba
     config.vm.define :"samba" do |host|
-      host.vm.box = "generic/debian10"
+      host.vm.box = "generic/ubuntu1804"
       host.vm.network :private_network,
         :ip => "192.168.7.202",
         :libvirt__network_name => "proaluno",
