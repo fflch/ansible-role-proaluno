@@ -1,103 +1,69 @@
-#!/usr/bin/php
+#!/usr/bin/python3
 
-<?php
+import requests
+import time
+import os
 
-/* Conexão com mysql */
-define( 'MYSQL_HOST', '{{ quotadb_host }}' );
-define( 'MYSQL_USER', '{{ quotadb_user }}' );
-define( 'MYSQL_PASSWORD', '{{ quotadb_password }}' );
-define( 'MYSQL_DB_NAME', '{{ quotadb_dbname }}' );
-$pdo_options  = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC);
-$PDO = new PDO( 'mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DB_NAME, MYSQL_USER, MYSQL_PASSWORD,$pdo_options );
+# Registrando printing
 
-/* Pega os dados do job */
-$jobid = getenv('TEAJOBID');
-$user = getenv('TEAUSERNAME');
-$filename = getenv('TEATITLE');
-$copies = getenv('TEACOPIES');
-$datafile = getenv('TEADATAFILE');
-$printer  = getenv("TEAPRINTERNAME");
-$host  = getenv("TEACLIENTHOST");
-$pages = 0;
+url = '{{ quotas_endpoint }}/api/printings/'
+api_key={{ quotas_api_token }}
 
-/* Registrar que está na fila */
-$sql = "INSERT INTO printings (jobid, user, filename, copies, pages, printer, created_at, updated_at, status, host) VALUES (:jobid, :user, :filename, :copies, :pages, :printer, :created_at, :updated_at, :status, :host)";
+headers = {'Authorization': api_key}
 
-$created_at = date("Y-m-d H:i:s");
-$updated_at = date("Y-m-d H:i:s");
+'''
+data = {'user': '5385361',
+        'pages': '2',
+        'copies': '3',
+        'printer': 'profcs',
+        'jobid': '1',
+        'host': '10.89.9.5',
+        'filename': 'teste.pdf',
+        'filesize': '192045',
+        }
+'''
+user = os.getenv('TEAUSERNAME')
+datafile = os.getenv('TEADATAFILE')
+copies = os.getenv('TEACOPIES')
+printer = os.getenv('TEAPRINTERNAME')
+jobid = os.getenv('TEAJOBID')
+host = os.getenv('TEACLIENTHOST')
+filename = os.getenv('TEATITLE')
+filesize = os.getenv('TEAJOBSIZE')
 
-$status = 'Processando';
+file_object = open('/tmp/saida.txt', 'a')
+file_object.write('Nome do arquivo: ' + filename)
+file_object.close
 
-$stmt = $PDO->prepare( $sql );
-$stmt->bindParam( ':jobid', $jobid, PDO::PARAM_INT);
-$stmt->bindParam( ':user', $user, PDO::PARAM_STR );
-$stmt->bindParam( ':filename', $filename, PDO::PARAM_STR );
-$stmt->bindParam( ':copies', $copies, PDO::PARAM_INT);
-$stmt->bindParam( ':pages', $pages, PDO::PARAM_INT );
-$stmt->bindParam( ':printer', $printer, PDO::PARAM_STR );
-$stmt->bindParam( ':status', $status );
-$stmt->bindParam( ':host', $host );
-$stmt->bindParam( ':created_at', $created_at );
-$stmt->bindParam( ':updated_at', $updated_at );
-$stmt->execute();
+exit(0)
 
-/* Contar páginas e verifica permissão */
-#$pages = shell_exec("/usr/bin/pkpgcounter $datafile");
-$pages = shell_exec("/usr/local/bin/pkpgcounter $datafile");
-$n = (int)$pages * (int)$copies;
-$pode = file_get_contents("{{ check_endpoint }}/{$user}/{$printer}/{$n}");
+response = requests.post(url, headers=headers, data=data)
 
-/* Atualiza status */
-$sql = "UPDATE printings SET pages=:pages, status=:status, updated_at=:updated_at WHERE jobid=:jobid";
-$updated_at = date("Y-m-d H:i:s");
+# TODO: só seguir se o código for 200
+if response.status_code == 200:
 
-if($pode == 'sim') {
-    $status = 'Fila';
-    $stmt = $PDO->prepare( $sql );
-    $stmt->bindParam( ':jobid', $jobid, PDO::PARAM_INT);
-    $stmt->bindParam( ':pages', $pages, PDO::PARAM_INT );
-    $stmt->bindParam( ':status', $status );
-    $stmt->bindParam( ':updated_at', $updated_at );
-    $stmt->execute();
-    exit(0);
-}
-else {
-    $status = 'Cancelado';
-    $stmt = $PDO->prepare( $sql );
-    $stmt->bindParam( ':jobid', $jobid, PDO::PARAM_INT);
-    $stmt->bindParam( ':pages', $pages, PDO::PARAM_INT );
-    $stmt->bindParam( ':status', $status );
-    $stmt->bindParam( ':updated_at', $updated_at );
-    $stmt->execute();
+    # TODO: se o retorno for sent_to_printer_queue exit(0) no script
+    data = response.json()
+    if data["latest_status"] == "sent_to_printer_queue":
+        exit(0)
 
-    /* O retorno aqui deveria ser: exit(5);
-     * Mas por algum motivo desconhecido, mesmo quando colocamos 5,
-     * o retorno chega no cups como 1, /var/log/cups/error_log:
-     * Backend returned status 1 (failed)
-     * Job held for 300 seconds since it could not be sent.
-     * O que faz o cups tentar imprimir o arquivo 5 vezes !!!!!
-     * Mas por um acaso descobri que se imputarmos um erro no php
-     * o código que chega no cups é 5:
-     * Backend returned status 5 (cancel job)
-     * é mole zé??
-     */
-    fuckfuckfuck();
+    printing_id = str(data["printing_id"])
 
-    /* para simularmos a rodada do script podemos fazer:
+    # TODO: se o retorno for waiting_job_authorization fazer um loop com 5 tentativas com intervalos de 1 segundo
+    for i in range(5):
+        time.sleep(1)
+        response = requests.get(url + printing_id, headers=headers)
+        status = response.json()["latest_status"]
+        if status == "sent_to_printer_queue":
+            exit(0)
+        if status == "cancelled_not_authorized":
+            exit(1)
 
-    cd /root
-    wget https://sti.fflch.usp.br/sites/sti.fflch.usp.br/files/arquivo.pdf
+    # No final, se passou o tempo máximo e não foi autorizado, cancelamos
+    # TODO: fazer a rota de cancelamento e usá-la aqui
+    # Novo status: cancelled_timeout
+    data = {"status": "cancelled_timeout"}
+    requests.post(url + printing_id, headers=headers, data=data)
+    exit(1)
 
-    export TEAJOBID=1
-    export TEAUSERNAME=8001
-    export TEATITLE='arquivo.pdf'
-    export TEACOPIES=1
-    export TEADATAFILE='/root/arquivo.pdf'
-    export TEAPRINTERNAME='impressora_raw_tea4cups'
-    export TEACLIENTHOST='1.1.1.1'
-
-    php /root/quota_check
-    
-    */
-}
 

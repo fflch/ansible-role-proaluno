@@ -5,16 +5,12 @@
 
   vars:
     # URL do sistema laravel
-    check_endpoint: http://quotas.proaluno.usp.br/check
+    quotas_endpoint: http://192.168.7.1:8000
+    quotas_api_token: 123
 
   tasks:
 
     - import_tasks: ../partials/locale.yml
-
-    - name: servidor de impressão dev
-      lineinfile:
-        path: /etc/hosts
-        line: "192.168.7.203 quotas.proaluno.usp.br" 
 
     - name: change root's password
       user:
@@ -23,11 +19,6 @@
 
     - name: Import tea4cups
       import_tasks: ../partials/tea4cups.yml
-      vars:
-        quotadb_host: 192.168.7.203
-        quotadb_user: quotas
-        quotadb_password: 'Pr0Aluno123'
-        quotadb_dbname: quotas
 
     - name:
       include_role:
@@ -50,7 +41,7 @@
             state: "present"
             uri: "tea4cups:cups-pdf:/"
 
-          - name: "impressora_adm"
+          - name: "impressora_adm_fin"
             printer_or_class: "printer"
             state: "present"
             uri: "tea4cups:socket://10.80.0.7"
