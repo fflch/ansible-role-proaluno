@@ -50,6 +50,11 @@
             state: "present"
             uri: "tea4cups:cups-pdf:/"
 
+          - name: "impressora_adm"
+            printer_or_class: "printer"
+            state: "present"
+            uri: "tea4cups:socket://10.80.0.7"
+
     - name: org.cups.cupsd.socket.d
       file:
         path: /etc/systemd/system/org.cups.cupsd.socket.d/

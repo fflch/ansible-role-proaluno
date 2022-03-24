@@ -50,11 +50,17 @@ Instalação das roles do ansible
 
     ansible-galaxy install -r requirements.yml
 
-Provisionando infraestrutura:
+### Provisionando infraestrutura para desensolvimento:
 
-    ansible-playbook playbooks/dev/cups.yml
+Primeiramente suba a máquina do samba e rode a configuração:
+
+    vagrant up samba
     ansible-playbook playbooks/dev/samba.yml
-    ansible-playbook playbooks/dev/laravel.yml
+
+
+
+
+        ansible-playbook playbooks/dev/cups.yml
     ansible-playbook playbooks/dev/terminal.yml
 
 A senha de todos serviços nesse ambiente de teste é: Pr0Aluno123

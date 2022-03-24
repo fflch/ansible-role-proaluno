@@ -1,9 +1,8 @@
 ######### Ambiente de desenvolvimento ######### 
 [vagrant]
-cups ansible_host="192.168.7.201"
-samba ansible_host="192.168.7.202"
-laravel ansible_host="192.168.7.203"
-terminal ansible_host="192.168.7.204"
+samba ansible_host="192.168.7.201"
+cups ansible_host="192.168.7.202"
+terminal ansible_host="192.168.7.203"
 
 [vagrant:vars]
 ansible_user="vagrant"
