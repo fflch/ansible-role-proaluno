@@ -76,10 +76,22 @@ Com o sistema https://github.com/uspdev/web-ldap-admin podemos administrar o ser
 
 Subindo o servidor do cups:
 
-    vagrant ssh cups
+    vagrant up cups
     ansible-playbook playbooks/dev/cups.yml
 
-    
+Acesse a máquina do cups:
+
+    vagrant ssh cups
+
+Acessar cups pela interface: http://192.168.7.202:631/
+Se pedir usuário e senha do cups digitar: root e Pr0Aluno123
+
+Subir o sistema de quotas na máquina hospedeira, pois ele irá servir as requisições do quota check:
+
+    php artisan serve --host 0.0.0.0
+
+Subindo a máquina terminal que simula uma máquina física da proaluno:
+
     ansible-playbook playbooks/dev/terminal.yml
 
 A senha de todos serviços nesse ambiente de teste é: Pr0Aluno123
