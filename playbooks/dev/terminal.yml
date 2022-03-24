@@ -32,7 +32,7 @@
 
           - name: impressora_adm_fin
             device: "ipp://{{proaluno_cups_server}}/printers/impressora_adm_fin"
-            model: 'raw'
+            model: 'K7600_processado_gstopdf17.ppd'
 
     - name: fflch.domain-member
       include_role:

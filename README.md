@@ -92,6 +92,7 @@ Subir o sistema de quotas na máquina hospedeira, pois ele irá servir as requis
 
 Subindo a máquina terminal que simula uma máquina física da proaluno:
 
+    vagrant ssh terminal
     ansible-playbook playbooks/dev/terminal.yml
 
 A senha de todos serviços nesse ambiente de teste é: Pr0Aluno123
