@@ -6,7 +6,7 @@
   vars:
     sambadc_realm: "proaluno.usp.br"
     ntp_dns_servers:
-      - 192.168.7.202
+      - 192.168.7.201
 
   tasks:
 
