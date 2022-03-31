@@ -7,7 +7,8 @@
     realm: "smbdomain.fflch.usp.br"
     cups_server: "ipp://cups.fflch.usp.br:631/printers"
     sala: "proaluno_letras_"
-    cups_printers:
+    #cups_printers:
+    proaluno_printers:
 
       - name: impressora
         device: "{{cups_server}}/proaluno_letras_ppd"
@@ -23,7 +24,7 @@
         proaluno_deploy_printers: True
         proaluno_install_pacotes_debian: True
         proaluno_install_mate: True
-        proaluno_remove_all_printers: False
+        proaluno_remove_all_printers: True
         proaluno_update_keys: True
 
     - name: Corrige o timezone para America/Sao_Paulo

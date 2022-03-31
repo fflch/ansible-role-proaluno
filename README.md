@@ -34,6 +34,7 @@ Instale na sua distro: ansible, vagrant
 Instalação e configuração do libvirt para criar virtualização:
 
     $ sudo apt install virt-manager libvirt-dev
+    $ sudo addgroup SEU-USER libvirt
 
 Instalação do plugin do libvirt no ansible:
 
@@ -49,19 +50,56 @@ Instalação das roles do ansible
 
     ansible-galaxy install -r requirements.yml
 
-Provisionando infraestrutura:
+### Provisionando infraestrutura para desensolvimento:
 
-    ansible-playbook playbooks/dev/cups.yml
+Primeiramente suba a máquina do samba e rode a configuração:
+
+    vagrant up samba
     ansible-playbook playbooks/dev/samba.yml
-    ansible-playbook playbooks/dev/laravel.yml
+
+Neste momento temos configurado um servidor samba, para testar:
+
+    vagrant ssh samba
+    sudo samba-tool user list
+
+Com o sistema https://github.com/uspdev/web-ldap-admin podemos administrar o servidor samba recém criado. Baixe o web-ldap-admin e configure como qualquer aplicação laravel. Configuração mínima para .env:
+
+    LDAP_HOSTS=192.168.7.201
+    LDAP_PORT=636
+    LDAP_BASE_DN='DC=proaluno,DC=usp,DC=br'
+    LDAP_USERNAME='CN=Administrator,CN=Users,DC=proaluno,DC=usp,DC=br'
+    LDAP_PASSWORD='Pr0Aluno123'
+    LDAP_USE_SSL=true
+    LDAP_USE_TLS=false
+    TIPO_NOMES_GRUPOS='siglas'
+    REMOVE_ALL_GROUPS=1
+
+Subindo o servidor do cups:
+
+    vagrant up cups
+    ansible-playbook playbooks/dev/cups.yml
+
+Acesse a máquina do cups:
+
+    vagrant ssh cups
+
+Acessar cups pela interface: http://192.168.7.202:631/
+Se pedir usuário e senha do cups digitar: root e Pr0Aluno123
+
+Subir o sistema de quotas na máquina hospedeira, pois ele irá servir as requisições do quota check:
+
+    php artisan serve --host 0.0.0.0
+
+Subindo a máquina terminal que simula uma máquina física da proaluno:
+
+    vagrant ssh terminal
     ansible-playbook playbooks/dev/terminal.yml
 
 A senha de todos serviços nesse ambiente de teste é: Pr0Aluno123
 
 Criando um usuário no samba com número USP 8001:
 
-    vagrant ssh samba
-    sudo samba-tool user create 8001
+
 
 Na máquina hospederia em /etc/hosts:
 
