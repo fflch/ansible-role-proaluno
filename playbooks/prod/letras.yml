@@ -6,6 +6,7 @@
   vars:
     realm: "smbdomain.fflch.usp.br"
     cups_server: "ipp://cups.fflch.usp.br:631/printers"
+    sala: "proaluno_letras_"
     cups_printers:
 
       - name: impressora
