@@ -1,22 +1,25 @@
 #!/usr/bin/python3
 
-import subprocess
-import requests
-import time
+import datetime
 import json
 import os
+import requests
+import subprocess
+import time
+import traceback
 
 # Registrando model printing 
 
 try:
-    url = "{{ quotas_endpoint }}/api/printings/"
-    api_key = "{{ quotas_api_token }}"
+    url = "http://192.168.7.1:8000/api/printings/"
+
+    api_key = "123"
 
     headers = {'Authorization': api_key}
 
     user = os.getenv('TEAUSERNAME')
     datafile = os.getenv('TEADATAFILE')
-    pages = subprocess.check_output(['/usr/local/bin/pkpgcounter', stdin=datafile)
+    pages = subprocess.check_output(['/usr/local/bin/pkpgcounter', datafile])
     copies = os.getenv('TEACOPIES')
     printer = os.getenv('TEAPRINTERNAME')
     jobid = os.getenv('TEAJOBID')
@@ -58,6 +61,7 @@ try:
 
         body  = {"status": "cancelled_timeout"}
         requests.post(url + printing_id, headers=headers, data=body)
+
         exit(-1)
 
     else:
@@ -65,11 +69,19 @@ try:
         file_object = open("/tmp/tea4cups.log", "a+")
         file_object.write("\n" + log)
         file_object.close()
+        body  = {"status": "printer_problem"}
+        requests.post(url + printing_id, headers=headers, data=body)
+
         exit(-1)
         
 except Exception as err:
-    log = str(err)
+    log = traceback.format_exc()
     file_object = open("/tmp/tea4cups.log", "a+")
-    file_object.write("\n" + "Exception captured: " + log)
+    datetime = datetime.datetime.now()
+    file_object.write("\n[{}]\n".format(datetime) + log)
     file_object.close()
+
+    body  = {"status": "printer_problem"}
+    requests.post(url + printing_id, headers=headers, data=body)
+
     exit(-1)
