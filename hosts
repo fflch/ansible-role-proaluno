@@ -64,6 +64,7 @@ linux008035801 ansible_host="10.172.2.1"
 #linux084019228 ansible_host="10.204.1.38"
 #linux084019266 ansible_host="10.204.1.39"
 #linux008035810 ansible_host="10.204.0.83"
+linux008038412 ansible_host="10.204.0.55"
 
 [letras]
 linux084019271 ansible_host="10.140.1.28"
