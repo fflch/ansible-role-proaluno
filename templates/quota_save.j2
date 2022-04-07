@@ -1,10 +1,41 @@
+#!/usr/bin/python3
 
-# Chamar a rota para cancelar uma impressão (problema na impressora)
-if problem:
-    status = "printer_problem"
-# chamar a rota de sucesso
-if ok:
-    status = "print_success"
+import datetime
+import os
+import requests
+import traceback
+
+try:
+    url = "{{ quotas_endpoint }}/api/printings/"
+    api_key = "{{ quotas_api_token }}"
+    headers = {'Authorization': api_key}
+
+    status = os.getenv('TEASTATUS')
+    jobid = os.getenv('TEAJOBID')
+    printer = os.getenv('TEAPRINTERNAME')
+
+    body = {"printer" : printer, "jobid": jobid}
+    response = None #requests.get(url, params=body)
+    printing_id = str(response.json()["printing_id"])
+
+    if printing_id.isdigit(): 
+        if status == "0":
+            latest_status = "print_success"
+        else:
+            latest_status = "printer_problem"
+            
+        body  = {"status": latest_status}
+        requests.post(url + printing_id, headers=headers, data=body)
     
-data = {"status": status}
-requests.post(url + printing_id, headers=headers, data=data)
+    else:
+        log = "Algo estranho aconteceu: printing_id não retornou um dígito como esperado."
+        file_object = open("/tmp/tea4cups.log", "a+")
+        file_object.write(log)
+        file_object.close()
+
+except Exception:
+    log = traceback.format_exc()
+    file_object = open("/tmp/tea4cups.log", "a+")
+    datetime = datetime.datetime.now()
+    file_object.write("\n[{}]\n".format(datetime) + log)
+    file_object.close()
