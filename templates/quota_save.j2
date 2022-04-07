@@ -6,8 +6,9 @@ import requests
 import traceback
 
 try:
-    url = "http://192.168.7.1:8000/api/printings/"
-    headers = {'Authorization': "123"}
+    url = "{{ quotas_endpoint }}/api/printings/"
+    api_key = "{{ quotas_api_token }}"
+    headers = {'Authorization': api_key}
 
     status = os.getenv('TEASTATUS')
     jobid = os.getenv('TEAJOBID')

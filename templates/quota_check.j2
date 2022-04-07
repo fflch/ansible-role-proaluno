@@ -11,10 +11,8 @@ import traceback
 # Registrando model printing 
 
 try:
-    url = "http://192.168.7.1:8000/api/printings/"
-
-    api_key = "123"
-
+    url = "{{ quotas_endpoint }}/api/printings/"
+    api_key = "{{ quotas_api_token }}"
     headers = {'Authorization': api_key}
 
     user = os.getenv('TEAUSERNAME')
