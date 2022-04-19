@@ -129,3 +129,6 @@ linux084019105 ansible_host="10.140.1.68"
 linux084035793 ansible_host="10.140.1.69"
 linux084019111 ansible_host="10.140.1.70"
 linux084019308 ansible_host="10.140.1.71"
+
+[fast]
+linux084019308 ansible_host="10.140.1.71"

@@ -1,69 +1,85 @@
 #!/usr/bin/python3
 
-import requests
-import time
+import datetime
+import json
 import os
+import requests
+import subprocess
+import time
+import traceback
 
 # Registrando model printing 
 
-url = '{{ quotas_endpoint }}/api/printings/'
-api_key={{ quotas_api_token }}
+try:
+    url = "{{ quotas_endpoint }}/api/printings/"
+    api_key = "{{ quotas_api_token }}"
+    headers = {'Authorization': api_key}
 
-headers = {'Authorization': api_key}
+    user = os.getenv('TEAUSERNAME')
+    datafile = os.getenv('TEADATAFILE')
+    pages = subprocess.check_output(['/usr/local/bin/pkpgcounter', datafile])
+    copies = os.getenv('TEACOPIES')
+    printer = os.getenv('TEAPRINTERNAME')
+    jobid = os.getenv('TEAJOBID')
+    host = os.getenv('TEACLIENTHOST')
+    filename = os.getenv('TEATITLE')
+    filesize = os.getenv('TEAJOBSIZE')
 
-'''
-data = {'user': '5385361',
-        'pages': '2',
-        'copies': '3',
-        'printer': 'profcs',
-        'jobid': '1',
-        'host': '10.89.9.5',
-        'filename': 'teste.pdf',
-        'filesize': '192045',
-        }
-'''
-user = os.getenv('TEAUSERNAME')
-datafile = os.getenv('TEADATAFILE')
-copies = os.getenv('TEACOPIES')
-printer = os.getenv('TEAPRINTERNAME')
-jobid = os.getenv('TEAJOBID')
-host = os.getenv('TEACLIENTHOST')
-filename = os.getenv('TEATITLE')
-filesize = os.getenv('TEAJOBSIZE')
+    body = {'user': user,
+            'pages': int(pages),
+            'copies': copies,
+            'printer': printer,
+            'jobid': jobid,
+            'host': host,
+            'filename': filename,
+            'filesize': filesize
+            }
 
-file_object = open('/tmp/saida.txt', 'a')
-file_object.write('Nome do arquivo: ' + filename)
-file_object.close
+    response = requests.post(url, headers=headers, data=body)
+    status_code = response.status_code
 
-exit(0)
+    if status_code == 200:
+        data = response.json()
 
-response = requests.post(url, headers=headers, data=data)
-
-# TODO: só seguir se o código for 200
-if response.status_code == 200:
-
-    # TODO: se o retorno for sent_to_printer_queue exit(0) no script
-    data = response.json()
-    if data["latest_status"] == "sent_to_printer_queue":
-        exit(0)
-
-    printing_id = str(data["printing_id"])
-
-    # TODO: se o retorno for waiting_job_authorization fazer um loop com 5 tentativas com intervalos de 1 segundo
-    for i in range(5):
-        time.sleep(1)
-        response = requests.get(url + printing_id, headers=headers)
-        status = response.json()["latest_status"]
-        if status == "sent_to_printer_queue":
+        if data["latest_status"] == "sent_to_printer_queue":
             exit(0)
-        if status == "cancelled_not_authorized":
-            exit(1)
 
-    # No final, se passou o tempo máximo e não foi autorizado, cancelamos
-    # TODO: fazer a rota de cancelamento e usá-la aqui
-    # Novo status: cancelled_timeout
-    data = {"status": "cancelled_timeout"}
-    requests.post(url + printing_id, headers=headers, data=data)
-    exit(1)
+        printing_id = str(data["printing_id"])
 
+        for i in range(120):
+            time.sleep(1)
+            response = requests.get(url + printing_id, headers=headers)
+            latest_status = response.json()["latest_status"]
 
+            if latest_status == "sent_to_printer_queue":
+                exit(0)
+
+            if latest_status == "cancelled_not_authorized":
+                exit(-1)
+
+        body  = {"status": "cancelled_timeout"}
+        requests.post(url + printing_id, headers=headers, data=body)
+
+        exit(-1)
+
+    else:
+        log = "Status code returned: " + str(status_code)
+        file_object = open("/tmp/tea4cups.log", "a+")
+        file_object.write("\n" + log)
+        file_object.close()
+        body  = {"status": "printer_problem"}
+        requests.post(url + printing_id, headers=headers, data=body)
+
+        exit(-1)
+        
+except Exception as err:
+    log = traceback.format_exc()
+    file_object = open("/tmp/tea4cups.log", "a+")
+    datetime = datetime.datetime.now()
+    file_object.write("\n[{}]\n".format(datetime) + log)
+    file_object.close()
+
+    body  = {"status": "printer_problem"}
+    requests.post(url + printing_id, headers=headers, data=body)
+
+    exit(-1)
