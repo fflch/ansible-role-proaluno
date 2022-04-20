@@ -23,14 +23,14 @@ ansible_user=root
 
 ########## Salas  ##########
 [fcs]
-linux008048029 ansible_host="10.172.1.150"
-linux008048033 ansible_host="10.172.1.245"
-linux008048034 ansible_host="10.172.1.72"
-linux008048032 ansible_host="10.172.1.75"
-linux008046993 ansible_host="10.172.1.248"
-linux008047003 ansible_host="10.172.2.3"
-linux008048030 ansible_host="10.172.1.71"
-linux008035801 ansible_host="10.172.2.1"
+#linux008048029 ansible_host="10.172.1.150"
+#linux008048033 ansible_host="10.172.1.245"
+#linux008048034 ansible_host="10.172.1.72"
+#linux008048032 ansible_host="10.172.1.75"
+#linux008046993 ansible_host="10.172.1.248"
+#linux008047003 ansible_host="10.172.2.3"
+#linux008048030 ansible_host="10.172.1.71"
+#linux008035801 ansible_host="10.172.2.1"
 
 #linux008048031 ansible_host="10.172.0.208"
 #linux008048033 ansible_host="10.172.1.245"
@@ -48,6 +48,11 @@ linux008035801 ansible_host="10.172.2.1"
 #linux008048028 ansible_host="10.172.0.3"
 #linux008042150 ansible_host="10.172.1.88"
 #linux008046641 ansible_host="10.172.1.234"
+linux084019255 ansible_host="10.172.1.89"
+#linux008040081 ansible_host="10.172.1.63"
+#linux008047635 ansible_host="10.172.1.235"
+linux008030022 ansible_host="10.172.1.90"
+linux008030024 ansible_host="10.172.1.103"
 
 [gh]
 #linux008038421 ansible_host="10.204.0.39"
