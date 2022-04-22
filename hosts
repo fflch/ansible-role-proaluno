@@ -21,6 +21,10 @@ ansible_user=root
 ansible_connection=ssh
 ansible_user=root
 
+[sti:vars]
+ansible_connection=ssh
+ansible_user=root
+
 ########## Salas  ##########
 [fcs]
 linux008048029 ansible_host="10.172.1.150"
@@ -131,5 +135,5 @@ linux084035793 ansible_host="10.140.1.69"
 linux084019111 ansible_host="10.140.1.70"
 linux084019308 ansible_host="10.140.1.71"
 
-[fast]
-linux084019308 ansible_host="10.140.1.71"
+[sti]
+linux084019277 ansible_host="10.84.0.243"
