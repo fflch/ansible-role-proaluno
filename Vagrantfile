@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         :libvirt__network_name => "proaluno",
         :libvirt__forward_mode => "nat"
       host.vm.provider :libvirt do |v|
-        v.memory = 2048
+        v.memory = 4096
         v.cpus = 2
       end
     end
