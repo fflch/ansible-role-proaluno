@@ -1,0 +1,27 @@
+# Add an Apt signing key, uses whichever key is at the URL
+- apt_key:
+    url: "https://qgis.org/downloads/qgis-2021.gpg.key"
+    state: present
+
+- apt_repository:
+    repo: deb https://qgis.org/debian buster main
+    state: present
+
+- apt_repository:
+    repo: deb-src https://qgis.org/debian buster main
+    state: present
+
+- name: update
+  apt:
+    update_cache: yes
+
+- name: upgrade
+  apt:
+    upgrade: dist
+    
+- name: Instalação de pacotes qgis
+  apt:
+    pkg:
+      - qgis
+      - qgis-plugin-grass
+

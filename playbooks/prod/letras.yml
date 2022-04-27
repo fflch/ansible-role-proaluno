@@ -1,6 +1,6 @@
 ---
 - name: letras
-  hosts: fast #letras
+  hosts: letras
   become: yes
 
   vars:
