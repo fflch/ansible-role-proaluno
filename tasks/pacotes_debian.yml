@@ -39,3 +39,7 @@
       - unrar
       - kolourpaint
       - pdftk
+
+- name: cmprescott.chrome
+  include_role:
+    name: cmprescott.chrome
