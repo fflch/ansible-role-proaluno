@@ -45,6 +45,7 @@
     - K7600_processado_gstopdf17.ppd
 
 #### remover impressoras antes de instalar a nova
+# Comando para fazer a remoção na mão:
 # for i in $(lpstat -p | awk '{print $2}'); do lpadmin -x $i; done
 - name: getting installed printers
   shell: lpstat -p | awk '{print $2}'

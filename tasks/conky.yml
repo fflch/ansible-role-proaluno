@@ -7,7 +7,7 @@
 
 - name: Copy .conkyrc
   template:
-    src: templates/conkyrc
+    src: conkyrc
     dest: /etc/skel/.conkyrc
     mode: '0755'
 
