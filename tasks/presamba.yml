@@ -11,4 +11,4 @@
   vars:
     resolv_conf_nameservers: "{{ proaluno_ntp_servers }}"
     resolv_conf_search_domains:
-      - "smbdomain.fflch.usp.br"
+      - "{{ proaluno_realm }}"

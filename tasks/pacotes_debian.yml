@@ -1,45 +1,45 @@
 - name: Instalação de pacotes via apt
   apt:
-    pkg:
-      - terminator
+    pkg: 
       - kolourpaint
-      - vlc
-      - build-essential
       - firmware-linux-nonfree
       - webext-ublock-origin
-      - texlive-full
-      - texstudio-l10n 
-      - texstudio
       - ntfs-3g
       - dosfstools
       - exfat-fuse
       - exfat-utils
       - chromium
-      - okular
       - nomacs
-      - praat
       - vim
-      - r-base
-      - gfortran
       - fonts-crosextra-carlito
       - fonts-crosextra-caladea
       - ttf-mscorefonts-installer
-      - gimp
-      - gimp-help-pt
-      - inkscape
-      - audacity
       - p7zip-full
       - p7zip-rar
-      - git
       - gvfs-backends # para celulares
       - gnome-disk-utility
       - zip
       - unzip
       - rar
       - unrar
-      - kolourpaint
       - pdftk
-
+      
+# Avaliar se precisamos desses pacotes:
+#      - texlive-full
+#      - texstudio-l10n 
+#      - praat
+#      - texstudio
+#      - inkscape
+#      - gimp
+#      - gimp-help-pt
+#      - build-essential
+#      - r-base
+#      - gfortran
+#      - terminator
+#      - okular
+#      - audacity
+#      - vlc
+#      - git
 - name: cmprescott.chrome
   include_role:
     name: cmprescott.chrome

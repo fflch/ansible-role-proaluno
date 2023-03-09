@@ -11,6 +11,7 @@ proaluno_update_keys: False
 proaluno_max_logon_time: 120
 proaluno_cups_server: "cups.fflch.usp.br:631"
 proaluno_sala: "pdfprinter"
+proaluno_realm: "smbdomain.fflch.usp.br"
 
 proaluno_ntp_servers:
   - 143.107.72.180
