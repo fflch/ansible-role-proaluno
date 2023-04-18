@@ -31,7 +31,7 @@
 - import_tasks: firefox.yml
 
 # gis versão mais nova
-#- import_tasks: qgis.yml
+- import_tasks: qgis.yml
 
 - import_tasks: update_keys.yml
   when: proaluno_update_keys
