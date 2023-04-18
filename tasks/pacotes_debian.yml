@@ -1,15 +1,15 @@
 - name: Instalação de pacotes via apt
   apt:
-    pkg: 
+    pkg:
       - kolourpaint
       - firmware-linux-nonfree
-      - webext-ublock-origin
+      - webext-ublock-origin-firefox
+      - webext-ublock-origin-chromium
       - ntfs-3g
       - dosfstools
       - exfat-fuse
-      - exfat-utils
+      - exfatprogs
       - chromium
-      - nomacs
       - vim
       - fonts-crosextra-carlito
       - fonts-crosextra-caladea
@@ -23,10 +23,10 @@
       - rar
       - unrar
       - pdftk
-      
+
 # Avaliar se precisamos desses pacotes:
 #      - texlive-full
-#      - texstudio-l10n 
+#      - texstudio-l10n
 #      - praat
 #      - texstudio
 #      - inkscape

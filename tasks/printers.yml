@@ -3,7 +3,6 @@
   apt:
     pkg:
     - cups
-    - task-print-server
     - printer-driver-all
     - foomatic-db-engine
     - hp-ppd
@@ -69,7 +68,7 @@
 - name: removing older printers
   shell: lpadmin -x {{ item }}
   loop: "{{ installed_printers.stdout_lines }}"
-  when: 
+  when:
     - item not in printers_to_keep
     - not proaluno_remove_all_printers
   ignore_errors: True
