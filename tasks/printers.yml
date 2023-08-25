@@ -73,20 +73,20 @@
     - not proaluno_remove_all_printers
   ignore_errors: True
 
-
 #### Instalação das impressoras
 #    -v tea4cups:{{ item.device }}
-- name: Install printers
-  shell: >
-    /usr/sbin/lpadmin -p {{ item.name }}
-    -v {{ item.device }}
-    -m {{ item.model }}
-    -o printer-error-policy=abort-job
-    -o printer-is-shared=false
-    -o sides=two-sided-long-edge
-    -o Media=A4
-    -o PageSize=A4
-    - -E
+#- name: Install printers
+#  shell: >
+#    /usr/sbin/lpadmin -p {{ item.name }}
+#    -v {{ item.device }}
+#    -m {{ item.model }}
+#    -o printer-error-policy=abort-job
+#    -o printer-is-shared=false
+#    -o sides=two-sided-long-edge
+#    -o Media=A4
+#    -o PageSize=A4
+#    - -E
+
 # lpadmin -E option forces encryption when connecting to the server
   args:
     chdir: /usr/share/cups/model
