@@ -1,43 +1,30 @@
 ---
-# tasks file for local.proaluno
-- name: copy source.list.j2
-  template:
-    src: "sources.list.j2"
-    dest: "/etc/apt/sources.list"
+- import_tasks: update.yml
+#- import_tasks: printers.yml
+#  when: proaluno_deploy_printers
 
-- name: update
-  apt:
-    update_cache: yes
+#- import_tasks: pacotes_debian.yml
+#  when: proaluno_install_pacotes_debian
 
-- name: upgrade
-  apt:
-    upgrade: dist
+#- import_tasks: mate.yml
+#  when: proaluno_install_mate
 
-- import_tasks: printers.yml
-  when: proaluno_deploy_printers
-
-- import_tasks: pacotes_debian.yml
-  when: proaluno_install_pacotes_debian
-
-- import_tasks: mate.yml
-  when: proaluno_install_mate
-
-- import_tasks: reboot.yml
-- import_tasks: conky.yml
-- import_tasks: lightdm.yml
-- import_tasks: restrict_shutdown.yml
-- import_tasks: remove_screensaver.yml
-- import_tasks: make_ssh_folder.yml
-- import_tasks: firefox.yml
+#- import_tasks: reboot.yml
+#- import_tasks: conky.yml
+#- import_tasks: lightdm.yml
+#- import_tasks: restrict_shutdown.yml
+#- import_tasks: remove_screensaver.yml
+#- import_tasks: make_ssh_folder.yml
+#- import_tasks: firefox.yml
 
 # gis versão mais nova
-- import_tasks: qgis.yml
+#- import_tasks: qgis.yml
 
-- import_tasks: update_keys.yml
-  when: proaluno_update_keys
+#- import_tasks: update_keys.yml
+#  when: proaluno_update_keys
 
-- import_tasks: home.yml
-- import_tasks: presamba.yml
+#- import_tasks: home.yml
+#- import_tasks: presamba.yml
 
 
 

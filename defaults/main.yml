@@ -1,6 +1,7 @@
 ---
 # defaults file for local.proaluno
 
+proaluno_debian_version: "bookworm"
 proaluno_install_pacotes_debian: True
 proaluno_install_mate: True
 proaluno_deploy_printers: True
