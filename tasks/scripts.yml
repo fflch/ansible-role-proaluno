@@ -1,0 +1,23 @@
+- name: create /proaluno folder
+  file:
+    path: /proaluno
+    state: directory
+    mode: '0755'
+
+- name: Copy /proaluno/login.sh
+  copy:
+    src: files/login.sh
+    dest: /proaluno/login.sh
+    mode: '0755'
+
+- name: Copy /proaluno/logout.sh
+  copy:
+    src: files/logout.sh
+    dest: /proaluno/logout.sh
+    mode: '0755'
+
+- name: Copy keyboard configuration
+  copy:
+    src: files/keyboard
+    dest: /etc/default/keyboard
+    mode: '0644'

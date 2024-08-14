@@ -1,0 +1,4 @@
+# usar uma melhor
+- name: cmprescott.chrome
+  include_role:
+    name: cmprescott.chrome

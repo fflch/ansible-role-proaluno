@@ -16,7 +16,7 @@
       - ttf-mscorefonts-installer
       - p7zip-full
       - p7zip-rar
-      - gvfs-backends # para celulares
+      - gvfs-backends
       - gnome-disk-utility
       - zip
       - unzip
@@ -40,6 +40,5 @@
 #      - audacity
 #      - vlc
 #      - git
-- name: cmprescott.chrome
-  include_role:
-    name: cmprescott.chrome
+
+

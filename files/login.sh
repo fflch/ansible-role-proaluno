@@ -1,9 +1,5 @@
 #!/bin/bash
 
-/proaluno/countdown.sh &
-
-/proaluno/welcome.sh &
-
-conky -d -p 5
+# arquivo mantido caso precisamos interceptar o login em algum momento
 
 

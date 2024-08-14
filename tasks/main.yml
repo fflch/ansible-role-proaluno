@@ -1,13 +1,14 @@
 ---
 - import_tasks: update.yml
-#- import_tasks: printers.yml
-#  when: proaluno_deploy_printers
+
+
+#- import_tasks: mate.yml
+#  when: proaluno_install_mate
+
 
 #- import_tasks: pacotes_debian.yml
 #  when: proaluno_install_pacotes_debian
 
-#- import_tasks: mate.yml
-#  when: proaluno_install_mate
 
 #- import_tasks: reboot.yml
 #- import_tasks: conky.yml
@@ -25,6 +26,8 @@
 
 #- import_tasks: home.yml
 #- import_tasks: presamba.yml
+
+#- import_tasks: external_roles.yml
 
 
 
