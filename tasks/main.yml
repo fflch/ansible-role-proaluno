@@ -1,6 +1,7 @@
 ---
 - import_tasks: update.yml
 
+- import_tasks: gui.yml
 
 #- import_tasks: mate.yml
 #  when: proaluno_install_mate
