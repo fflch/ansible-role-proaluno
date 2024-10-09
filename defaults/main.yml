@@ -2,16 +2,4 @@
 # defaults file for local.proaluno
 
 proaluno_debian_version: "bookworm"
-proaluno_install_desktop_oa: True
-proaluno_install_mate: True
-
-proaluno_update_keys: False
-proaluno_max_logon_time: 120
-proaluno_sala: "pdfprinter"
-proaluno_realm: "smbdomain.fflch.usp.br"
-
-proaluno_ntp_servers:
-  - 143.107.72.180
-  - 143.107.72.181
-  - 143.107.72.182
-  - 143.107.72.183
+proaluno_gui: "xfce"
