@@ -1,11 +1,9 @@
 ---
 - import_tasks: update.yml
 
+# Interface grafica
 - import_tasks: gui.yml
-
-#- import_tasks: mate.yml
-#  when: proaluno_install_mate
-
+  when: proaluno_install_gui
 
 #- import_tasks: pacotes_debian.yml
 #  when: proaluno_install_pacotes_debian
@@ -14,6 +12,12 @@
 #- import_tasks: reboot.yml
 #- import_tasks: conky.yml
 #- import_tasks: lightdm.yml
+
+# Scripts chamados por outras tarefas
+- import_tasks: scripts.yml
+
+# Lightdm, para gerenciamento de ambiente
+- import_tasks: lightdm.yml
 
 # Impede o desligamento do pc via interface 
 - import_tasks: restrict_shutdown.yml
