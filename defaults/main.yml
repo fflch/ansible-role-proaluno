@@ -4,3 +4,6 @@
 proaluno_debian_version: "bookworm"
 proaluno_gui: "xfce"
 proaluno_install_gui: false
+
+proaluno_status_route: "http://192.168.8.1:8000/api/status"
+proaluno_status_password: "http://192.168.8.1:8000/api/status"
