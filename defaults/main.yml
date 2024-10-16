@@ -3,3 +3,4 @@
 
 proaluno_debian_version: "bookworm"
 proaluno_gui: "xfce"
+proaluno_install_gui: false
