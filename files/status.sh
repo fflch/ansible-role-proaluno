@@ -1,10 +1,16 @@
 #!/bin/bash
 
-who=$(who | grep -w tty7)
-name=$(echo $who | cut -d' ' -f1)
-data=$(echo $who | cut -d' ' -f3)
-hora=$(echo $who | cut -d' ' -f4)
+# dump hostname
 hostname=$(hostname)
+
+# Coleta o username da pessoa que está logada
+who=$(who | grep -w tty7)
+logged_username=$(echo $who | cut -d' ' -f1)
+
+# Coleta da data e horário do login
+logged_date=$(echo $who | cut -d' ' -f3)
+logged_hora=$(echo $who | cut -d' ' -f4)
+
 
 curl --header "Authorization: 123"         \
      -H "Content-Type: application/json"      \
