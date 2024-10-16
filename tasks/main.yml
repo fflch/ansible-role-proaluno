@@ -11,7 +11,6 @@
 
 #- import_tasks: reboot.yml
 #- import_tasks: conky.yml
-#- import_tasks: lightdm.yml
 
 # Scripts chamados por outras tarefas
 - import_tasks: scripts.yml
@@ -22,7 +21,10 @@
 # Impede o desligamento do pc via interface 
 - import_tasks: restrict_shutdown.yml
 
-#- import_tasks: remove_screensaver.yml
+# Impede o bloqueio de tela
+- import_tasks: disable_screenlock.yml
+# - import_tasks: remove_screensaver.yml
+
 #- import_tasks: make_ssh_folder.yml
 #- import_tasks: firefox.yml
 

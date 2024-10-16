@@ -1,0 +1,8 @@
+- name: Disable screenlock
+  shell: |
+    OUT=$(tail -1 /etc/xdg/autostart/light-locker.desktop)
+    EXP="Hidden=true"
+    if [ "$OUT" != "$EXP" ]
+    then
+      echo 'Hidden=true' >> /etc/xdg/autostart/light-locker.desktop
+    fi
