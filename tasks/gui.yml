@@ -2,9 +2,3 @@
   apt:
     name: task-{{proaluno_gui}}-desktop
     state: present
-
-# TODO: trocar para handler
-- name: lightdm
-  service:
-    name: lightdm
-    state: restarted
