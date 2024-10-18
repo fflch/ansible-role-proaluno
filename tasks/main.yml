@@ -21,9 +21,16 @@
 # Impede o desligamento do pc via interface 
 - import_tasks: restrict_shutdown.yml
 
+
 # Impede o bloqueio de tela
+# No XFCE, esta disponivel o light-locker
 - import_tasks: disable_screenlock.yml
-# - import_tasks: remove_screensaver.yml
+  when: proaluno_gui == "xfce"
+
+# Noutros casos, o {gui}-screensaver eh utilizado
+- import_tasks: remove_screensaver.yml
+  when: proaluno_gui != "xfce"
+
 
 #- import_tasks: make_ssh_folder.yml
 #- import_tasks: firefox.yml

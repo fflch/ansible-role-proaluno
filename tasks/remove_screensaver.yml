@@ -1,5 +1,5 @@
 - name: Remove screensaver
   apt:
-    name: "mate-screensaver"
+    name: "{{proaluno_gui}}-screensaver"
     state: absent
     purge: yes

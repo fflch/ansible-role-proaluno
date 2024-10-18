@@ -2,5 +2,6 @@
 # defaults file for local.proaluno
 
 proaluno_debian_version: "bookworm"
-proaluno_gui: "xfce"
-proaluno_install_gui: false
+proaluno_gui: "cinnamon"
+proaluno_install_gui: true
+proaluno_update_keys: true
