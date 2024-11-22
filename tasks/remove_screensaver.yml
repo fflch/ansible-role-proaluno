@@ -1,5 +1,0 @@
-- name: Remove screensaver
-  apt:
-    name: "{{proaluno_gui}}-screensaver"
-    state: absent
-    purge: yes

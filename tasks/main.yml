@@ -23,15 +23,10 @@
 # Cron para desligar os pcs as 23h00
 - import_tasks: cron_shutdown.yml
 
-# # Impede o bloqueio de tela
-# # No XFCE, esta disponivel o light-locker
+# Impede as formas de bloquear a tela
+# No XFCE, esta disponivel o light-locker
 - import_tasks: disable_screenlock.yml
   when: proaluno_gui == "xfce"
-
-# # Noutros casos, o {gui}-screensaver eh utilizado
-# - import_tasks: remove_screensaver.yml
-#   when: proaluno_gui != "xfce"
-
 
 #- import_tasks: make_ssh_folder.yml
 #- import_tasks: firefox.yml
