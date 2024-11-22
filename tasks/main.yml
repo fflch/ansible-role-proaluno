@@ -3,7 +3,6 @@
 
 # Interface grafica
 - import_tasks: gui.yml
-  when: proaluno_install_gui
 
 #- import_tasks: pacotes_debian.yml
 #  when: proaluno_install_pacotes_debian

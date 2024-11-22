@@ -2,6 +2,13 @@
 # defaults file for local.proaluno
 
 proaluno_debian_version: "bookworm"
-proaluno_gui: "cinnamon"
-proaluno_install_gui: true
 proaluno_update_keys: true
+
+# new GUI to install
+proaluno_gui: "xfce"
+proaluno_install_gui: false
+
+# if there is a installed GUI to remove when installing new GUI
+prolauno_uninstall_old_gui: false
+proaluno_uninstall_old_gui_name: 'cinnamon'
+

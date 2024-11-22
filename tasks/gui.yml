@@ -2,3 +2,12 @@
   apt:
     name: task-{{proaluno_gui}}-desktop
     state: present
+  when: proaluno_install_gui
+
+- name: Uninstall old GUI
+  apt:
+    name: "{{proaluno_uninstall_old_gui_name}}*"
+    autoremove: yes
+    state: absent
+    purge: yes
+  when: prolauno_uninstall_old_gui
