@@ -25,8 +25,8 @@
 
 # # Impede o bloqueio de tela
 # # No XFCE, esta disponivel o light-locker
-# - import_tasks: disable_screenlock.yml
-#   when: proaluno_gui == "xfce"
+- import_tasks: disable_screenlock.yml
+  when: proaluno_gui == "xfce"
 
 # # Noutros casos, o {gui}-screensaver eh utilizado
 # - import_tasks: remove_screensaver.yml
