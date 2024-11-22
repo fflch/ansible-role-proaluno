@@ -4,10 +4,5 @@
     state: present
   when: proaluno_install_gui
 
-- name: Uninstall old GUI
-  apt:
-    name: "{{proaluno_uninstall_old_gui_name}}*"
-    autoremove: yes
-    state: absent
-    purge: yes
+- import_tasks: cron_uninstall_gui.yml
   when: prolauno_uninstall_old_gui
