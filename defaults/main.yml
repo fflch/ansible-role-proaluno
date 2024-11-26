@@ -13,3 +13,5 @@ proaluno_gui_styles: 'files/xfce4'
 prolauno_uninstall_old_gui: false
 proaluno_uninstall_old_gui_name: 'cinnamon'
 
+# install default pckgs (/tasks/pacotes_debian.yml)
+proaluno_install_pacotes_debian: false

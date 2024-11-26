@@ -4,8 +4,8 @@
 # Interface grafica
 - import_tasks: gui.yml
 
-#- import_tasks: pacotes_debian.yml
-#  when: proaluno_install_pacotes_debian
+- import_tasks: pacotes_debian.yml
+  when: proaluno_install_pacotes_debian
 
 
 #- import_tasks: reboot.yml
