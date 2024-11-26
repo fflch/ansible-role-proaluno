@@ -6,3 +6,16 @@
 
 - import_tasks: cron_uninstall_gui.yml
   when: prolauno_uninstall_old_gui
+
+- name: Copy background-image to /proaluno folder
+  copy:
+    src: files/fflch.png
+    dest: /proaluno/fflch.png
+    mode: '0755'
+
+- name: Copy styles settings folder to /etc/skel/.config
+  copy:
+    src: {{proaluno_gui_styles}}
+    dest: /etc/skel/.config
+    mode: '0755'
+  when: proaluno_install_gui
