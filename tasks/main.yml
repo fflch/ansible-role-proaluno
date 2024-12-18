@@ -18,6 +18,9 @@
 - import_tasks: welcome.yml
   when: proaluno_welcome_message
 
+# Scripts de status
+- import_tasks: status_pc.yml
+
 # Lightdm, para gerenciamento de ambiente
 - import_tasks: lightdm.yml
 
