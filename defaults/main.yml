@@ -15,3 +15,6 @@ proaluno_uninstall_old_gui_name: 'cinnamon'
 
 # install default pckgs (/tasks/pacotes_debian.yml)
 proaluno_install_pacotes_debian: false
+
+# welcome message
+proaluno_welcome_message: true

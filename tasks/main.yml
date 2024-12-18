@@ -14,6 +14,10 @@
 # Scripts chamados por outras tarefas
 - import_tasks: scripts.yml
 
+# Mensagem de boas-vindas
+- import_tasks: welcome.yml
+  when: proaluno_welcome_message
+
 # Lightdm, para gerenciamento de ambiente
 - import_tasks: lightdm.yml
 
