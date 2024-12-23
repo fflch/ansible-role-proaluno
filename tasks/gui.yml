@@ -1,6 +1,6 @@
 - name: Uninstalling old GUI
   shell: |
-    dpkg --get-selections | grep .{{proaluno_uninstall_old_gui_name}}. | cut -f1 | xargs apt-get remove -y && apt remove -y .{{proaluno_uninstall_old_gui_name}}.-session
+    dpkg --get-selections | grep .{{proaluno_uninstall_old_gui_name}}. | cut -f1 | xargs apt-get remove -y && apt remove -y {{proaluno_uninstall_old_gui_name}}-session
   when: proaluno_uninstall_old_gui
 
 - name: GUI
