@@ -10,7 +10,7 @@ proaluno_install_gui: false
 proaluno_gui_styles: 'files/xfce4'
 
 # if there is a installed GUI to remove when installing new GUI
-prolauno_uninstall_old_gui: false
+proaluno_uninstall_old_gui: false
 proaluno_uninstall_old_gui_name: 'cinnamon'
 
 # install default pckgs (/tasks/pacotes_debian.yml)

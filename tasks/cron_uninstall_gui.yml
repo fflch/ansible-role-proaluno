@@ -1,7 +1,0 @@
-- name: Cron file to uninstall some GUI
-  ansible.builtin.cron:
-    name: cron uninstall gui
-    special_time: "reboot"
-    user: root
-    job: "apt autoremove --purge -y {{proaluno_uninstall_old_gui_name}}* > /etc/cron.d/output_unintall.txt && rm /etc/cron.d/ansible_uninstall_gui"
-    cron_file: ansible_uninstall_gui

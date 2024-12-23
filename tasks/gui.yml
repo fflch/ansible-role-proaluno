@@ -1,11 +1,13 @@
+- name: Uninstalling old GUI
+  shell: |
+    dpkg --get-selections | grep .{{proaluno_uninstall_old_gui_name}}. | cut -f1 | xargs apt-get remove -y && apt remove -y cinnamon-session
+  when: proaluno_uninstall_old_gui
+
 - name: GUI
   apt:
     name: task-{{proaluno_gui}}-desktop
     state: present
   when: proaluno_install_gui
-
-- import_tasks: cron_uninstall_gui.yml
-  when: prolauno_uninstall_old_gui
 
 - name: Copy background-image to /proaluno folder
   copy:
@@ -15,7 +17,7 @@
 
 - name: Copy styles settings folder to /etc/skel/.config
   copy:
-    src: {{proaluno_gui_styles}}
+    src: "{{proaluno_gui_styles}}"
     dest: /etc/skel/.config
     mode: '0755'
   when: proaluno_install_gui
