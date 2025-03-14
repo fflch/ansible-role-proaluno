@@ -3,10 +3,9 @@
 
 # Interface grafica
 - import_tasks: gui.yml
-  when: proaluno_install_gui
 
-#- import_tasks: pacotes_debian.yml
-#  when: proaluno_install_pacotes_debian
+- import_tasks: pacotes_debian.yml
+  when: proaluno_install_pacotes_debian
 
 
 #- import_tasks: reboot.yml
@@ -15,15 +14,26 @@
 # Scripts chamados por outras tarefas
 - import_tasks: scripts.yml
 
+# Mensagem de boas-vindas
+- import_tasks: welcome.yml
+  when: proaluno_welcome_message
+
+# Scripts de status
+- import_tasks: status_pc.yml
+
 # Lightdm, para gerenciamento de ambiente
 - import_tasks: lightdm.yml
 
 # Impede o desligamento do pc via interface 
 - import_tasks: restrict_shutdown.yml
 
-# Impede o bloqueio de tela
+# Cron para desligar os pcs as 23h00
+- import_tasks: cron_shutdown.yml
+
+# Impede as formas de bloquear a tela
+# No XFCE, esta disponivel o light-locker
 - import_tasks: disable_screenlock.yml
-# - import_tasks: remove_screensaver.yml
+  when: proaluno_gui == "xfce"
 
 #- import_tasks: make_ssh_folder.yml
 #- import_tasks: firefox.yml

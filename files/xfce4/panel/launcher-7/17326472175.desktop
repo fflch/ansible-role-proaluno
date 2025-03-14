@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.0
+Name=Chromium Web Browser
+Name[pt_BR]=Chromium Navegador da Internet
+GenericName=Web Browser
+GenericName[pt]=Navegador Web
+GenericName[pt_BR]=Navegador da Internet
+Comment=Access the Internet
+Comment[pt]=Aceder à Internet
+Comment[pt_BR]=Acessar a internet
+Exec=/usr/bin/chromium %U
+Terminal=false
+X-MultipleArgs=false
+Type=Application
+Icon=chromium
+Categories=Network;WebBrowser;
+MimeType=text/html;text/xml;application/xhtml_xml;application/x-mimearchive;x-scheme-handler/http;x-scheme-handler/https;
+StartupWMClass=chromium
+StartupNotify=true
+Keywords=browser
+X-XFCE-Source=file:///usr/share/applications/chromium.desktop

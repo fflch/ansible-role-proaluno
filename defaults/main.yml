@@ -2,8 +2,22 @@
 # defaults file for local.proaluno
 
 proaluno_debian_version: "bookworm"
+proaluno_update_keys: true
+
+# new GUI to install
 proaluno_gui: "xfce"
 proaluno_install_gui: false
+proaluno_gui_styles: 'files/xfce4'
+
+# if there is a installed GUI to remove when installing new GUI
+proaluno_uninstall_old_gui: false
+proaluno_uninstall_old_gui_name: 'cinnamon'
+
+# install default pckgs (/tasks/pacotes_debian.yml)
+proaluno_install_pacotes_debian: false
+
+# welcome message
+proaluno_welcome_message: true
 
 proaluno_status_route: "http://192.168.8.1:8000/api/status"
 proaluno_status_password: "http://192.168.8.1:8000/api/status"

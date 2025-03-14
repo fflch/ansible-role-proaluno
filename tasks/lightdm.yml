@@ -15,3 +15,8 @@
     src: files/lightdm.conf
     dest: /etc/lightdm/lightdm.conf
     mode: '0644'
+
+- name: lightdm
+  service:
+    name: lightdm
+    state: restarted

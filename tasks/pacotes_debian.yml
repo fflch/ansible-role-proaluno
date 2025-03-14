@@ -23,22 +23,18 @@
       - rar
       - unrar
       - pdftk
-
-# Avaliar se precisamos desses pacotes:
-#      - texlive-full
-#      - texstudio-l10n
-#      - praat
-#      - texstudio
-#      - inkscape
-#      - gimp
-#      - gimp-help-pt
-#      - build-essential
-#      - r-base
-#      - gfortran
-#      - terminator
-#      - okular
-#      - audacity
-#      - vlc
-#      - git
-
-
+      - texlive-full
+      - texstudio-l10n
+      - praat
+      - texstudio
+      - inkscape
+      - gimp
+      - gimp-help-pt
+      - build-essential
+      - r-base
+      - gfortran
+      - terminator
+      - okular
+      - audacity
+      - vlc
+      - git

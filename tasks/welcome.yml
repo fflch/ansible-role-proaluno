@@ -1,0 +1,17 @@
+- name: Welcome script
+  copy:
+    src: files/welcome.sh
+    dest: /proaluno/welcome.sh
+    mode: '0755'
+
+- name: Welcome message
+  copy:
+    src: defaults/WELCOME
+    dest: /proaluno/WELCOME
+    mode: '0755'
+
+- name: Welcome autostart application
+  copy:
+    src: files/autostart
+    dest: /etc/skel/.config
+    mode: '0755'

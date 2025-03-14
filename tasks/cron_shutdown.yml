@@ -1,0 +1,14 @@
+- name: Cron file to shutdown the pc (file in /etc/cron.d)
+  ansible.builtin.cron:
+    name: cron shutdown
+    weekday: "1-5"
+    minute: "00"
+    hour: "23"
+    user: root
+    job: "usr/bin/systemctl restart lightdm"
+    cron_file: ansible_shutdown
+
+- name: cron
+  service:
+    name: cron
+    state: restarted

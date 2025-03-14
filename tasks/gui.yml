@@ -1,10 +1,23 @@
+- name: Uninstalling old GUI
+  shell: |
+    dpkg --get-selections | grep .{{proaluno_uninstall_old_gui_name}}. | cut -f1 | xargs apt-get remove -y && apt remove -y {{proaluno_uninstall_old_gui_name}}-session
+  when: proaluno_uninstall_old_gui
+
 - name: GUI
   apt:
     name: task-{{proaluno_gui}}-desktop
     state: present
+  when: proaluno_install_gui
 
-# TODO: trocar para handler
-- name: lightdm
-  service:
-    name: lightdm
-    state: restarted
+- name: Copy background-image to /proaluno folder
+  copy:
+    src: files/fflch.png
+    dest: /proaluno/fflch.png
+    mode: '0755'
+
+- name: Copy styles settings folder to /etc/skel/.config
+  copy:
+    src: "{{proaluno_gui_styles}}"
+    dest: /etc/skel/.config
+    mode: '0755'
+  when: proaluno_install_gui
