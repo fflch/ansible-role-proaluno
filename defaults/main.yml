@@ -18,3 +18,6 @@ proaluno_install_pacotes_debian: false
 
 # welcome message
 proaluno_welcome_message: true
+
+proaluno_status_route: "http://192.168.8.1:8000/api/status"
+proaluno_status_password: "http://192.168.8.1:8000/api/status"
