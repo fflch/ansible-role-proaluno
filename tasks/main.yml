@@ -1,12 +1,8 @@
 ---
 - import_tasks: update.yml
 
-# Interface grafica
-- import_tasks: gui.yml
-
 - import_tasks: pacotes_debian.yml
   when: proaluno_install_pacotes_debian
-
 
 #- import_tasks: reboot.yml
 #- import_tasks: conky.yml
@@ -48,6 +44,9 @@
 #- import_tasks: presamba.yml
 
 #- import_tasks: external_roles.yml
+
+# Interface grafica
+- import_tasks: gui.yml
 
 
 
