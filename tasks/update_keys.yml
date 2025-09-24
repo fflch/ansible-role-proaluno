@@ -3,5 +3,4 @@
   get_url:
     url: http://public.fflch.usp.br/proaluno/files/authorized_keys
     dest: /root/.ssh/authorized_keys
-    checksum: sha256:d0de6357882687a4162563429f68dd415b543e9549cf80280d0a176b70aaf961
     mode: '0600'
