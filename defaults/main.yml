@@ -6,7 +6,7 @@ proaluno_update_keys: true
 
 # new GUI to install
 proaluno_gui: "xfce"
-proaluno_install_gui: false
+proaluno_install_gui: true
 proaluno_gui_styles: 'files/xfce4'
 
 # if there is a installed GUI to remove when installing new GUI
@@ -14,10 +14,15 @@ proaluno_uninstall_old_gui: false
 proaluno_uninstall_old_gui_name: 'cinnamon'
 
 # install default pckgs (/tasks/pacotes_debian.yml)
-proaluno_install_pacotes_debian: false
+proaluno_install_pacotes_debian: true
 
 # welcome message
 proaluno_welcome_message: true
 
 proaluno_status_route: "http://192.168.8.1:8000/api/status"
 proaluno_status_password: "http://192.168.8.1:8000/api/status"
+
+# teste para opengrads
+opengrads_url: "https://sourceforge.net/projects/opengrads/files/grads2/2.2.1.oga.1/Linux%20%2864%20Bits%29/opengrads-2.2.1.oga.1-bundle-x86_64-pc-linux-gnu-glibc_2.17.tar.gz/download"
+opengrads_file: "opengrads-2.2.1.oga.1-bundle-x86_64-pc-linux-gnu-glibc_2.17.tar.gz"
+opengrads_version: "opengrads-2.2.1.oga.1"
