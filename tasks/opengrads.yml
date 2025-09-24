@@ -1,0 +1,39 @@
+# Criar uma pasta temporária para download do OpenGrADS
+- name: Criar pasta temporária para download do OpenGrADS
+  ansible.builtin.file:
+    path: /tmp/opengrads
+    state: directory
+    mode: '0755'
+
+# Baixar OpenGrADS bundle na pasta temporária
+- name: Baixar OpenGrADS bundle
+  get_url:
+    url: "{{ opengrads_url }}"
+    dest: "/tmp/opengrads"
+    mode: '0644'
+
+# Descompactar OpenGrADS em /usr/local
+- name: Descompactar OpenGrADS
+  ansible.builtin.unarchive:
+    src: "/tmp/opengrads/{{ opengrads_file }}"
+    dest: /usr/local/
+    remote_src: yes
+    
+# Listar conteúdo em /usr/local/{{opengrads_version}}/Contents (com exceções)
+- name: Listar os arquivos e pastas em Contents
+  ansible.builtin.find:
+    paths: "/usr/local/{{opengrads_version}}/Contents"
+    file_type: any
+    recurse: no
+    excludes: 
+      - "Resources"
+      - "Documentation.html"
+  register: contents_list
+
+# Criar links simbólicos em /usr/local/bin
+- name: Criar links simbólicos em /usr/local/bin
+  ansible.builtin.file:
+    src: "{{ item.path }}"
+    dest: "/usr/local/bin/{{ item.path | basename }}"
+    state: link
+  loop: "{{ contents_list.files }}"

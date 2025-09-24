@@ -1,4 +1,7 @@
 ---
+
+
+
 - import_tasks: update.yml
 
 - import_tasks: pacotes_debian.yml
@@ -14,8 +17,11 @@
 - import_tasks: welcome.yml
   when: proaluno_welcome_message
 
+# Interface grafica
+- import_tasks: gui.yml
+
 # Scripts de status
-- import_tasks: status_pc.yml
+#- import_tasks: status_pc.yml
 
 # Lightdm, para gerenciamento de ambiente
 - import_tasks: lightdm.yml
@@ -45,8 +51,8 @@
 
 #- import_tasks: external_roles.yml
 
-# Interface grafica
-- import_tasks: gui.yml
+# Instalação programa opengrads
+- import_tasks: opengrads.yml
 
 
 
