@@ -7,6 +7,9 @@
   apt:
     update_cache: yes
 
-- name: upgrade
+- name: Upgrade system packages
   apt:
     upgrade: dist
+    autoremove: yes
+  environment:
+    DEBIAN_FRONTEND: noninteractive
