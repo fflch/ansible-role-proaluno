@@ -40,3 +40,6 @@
       - git
       - grads
       - cdo
+    state: present
+    update_cache: yes
+    force_apt_get: true
